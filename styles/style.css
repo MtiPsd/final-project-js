@@ -86,3 +86,30 @@ a:visited {
 } */
 
 /* /////////////////////////////////////////////////////////////// */
+
+.container {
+  height: 100dvh;
+  display: grid;
+  grid-template-columns:
+    1.5rem [side-start] 6rem [side-end] minmax(2rem, 1fr)
+    [content-start] minmax(max-content, 83rem) [content-end] minmax(2rem, 1fr);
+  grid-template-rows: 0;
+  align-content: center;
+  background-image: url("../assets/images/bruthalism.webp");
+  background-position: center;
+  background-size: cover;
+}
+
+.content {
+  grid-column: content-start / content-end;
+  background-color: var(--color-primary);
+  height: 95dvh;
+  padding: 3rem;
+}
+
+.sidebar {
+  grid-column: side-start / side-end;
+  background-color: var(--color-primary);
+
+  height: 95dvh;
+}
