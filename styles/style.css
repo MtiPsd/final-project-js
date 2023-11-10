@@ -219,11 +219,19 @@ a:visited {
   background-color: var(--color-icon-secondary);
 }
 
-.icon--edit {
-  background-color: var(--color-icon-secondary);
-}
+/* .icon--edit {
+  background-color: var(--color-icon-secondary); 
+*/
 
 .icon--delete {
+  background-color: var(--color-icon-tertiary);
+}
+
+/* .done__icon--undo {
+  background-color: var(--color-icon-secondary);
+} */
+
+.done__icon--delete {
   background-color: var(--color-icon-tertiary);
 }
 
