@@ -91,12 +91,13 @@ a:visited {
   height: 100dvh;
   display: grid;
   grid-template-columns:
-    1.5rem [side-start] 6rem [side-end] minmax(2rem, 1fr)
+    1.5rem [side-start] 20rem [side-end] minmax(2rem, 1fr)
     [content-start] minmax(max-content, 83rem) [content-end] minmax(2rem, 1fr);
   grid-template-rows: 0;
   align-content: center;
   background-image: url("../assets/images/bruthalism.webp");
-  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
 }
 
@@ -105,13 +106,17 @@ a:visited {
   background-color: var(--color-primary);
   height: 95dvh;
   padding: 3rem;
+  border: var(--standard-border);
+  box-shadow: var(--container-box-shadow);
 }
 
 .sidebar {
   grid-column: side-start / side-end;
   background-color: var(--color-primary);
-
   height: 95dvh;
+  border: var(--standard-border);
+  box-shadow: var(--container-box-shadow);
+  padding: 2rem 1rem;
 }
 
 .heading-1 {
@@ -220,4 +225,43 @@ a:visited {
 
 .icon--delete {
   background-color: var(--color-icon-tertiary);
+}
+
+/* sidebar */
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  gap: 1rem;
+}
+
+.sidebar__devider {
+  margin: 2rem auto;
+  height: 1px;
+  background-color: black;
+  width: 100%;
+}
+
+.title > p {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  margin: auto 0;
+}
+
+.sidebar__btn {
+  width: 100%;
+  height: 4.5rem;
+  background-color: var(--color-button-secondary);
+  margin-bottom: 1rem;
+  border: var(--standard-border);
+  box-shadow: var(--button-box-shadow);
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+  align-items: center;
+  justify-content: start;
 }
