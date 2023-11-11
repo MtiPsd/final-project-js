@@ -1,9 +1,12 @@
-import { API_TODOS_ENDPOINT } from "../config/apiConfig.js";
-import { tasksApi } from "../interceptor/todosApi.js";
+import {
+  API_DONES_ENDPOINT,
+  API_TODOS_ENDPOINT,
+} from "../config/apiConfig.js";
+import { tasksApi } from "../interceptor/tasksApi.js";
 
 async function getTasks() {
   try {
-    const todos = await todosApi.get(API_TODOS_ENDPOINT);
+    const todos = await tasksApi.get(API_TODOS_ENDPOINT);
     return todos;
   } catch (error) {
     console.error(
@@ -16,7 +19,7 @@ async function getTasks() {
 
 async function createTask(newTask) {
   try {
-    const createdTask = await todosApi.post(
+    const createdTask = await tasksApi.post(
       API_TODOS_ENDPOINT,
       newTask,
     );
@@ -32,7 +35,7 @@ async function createTask(newTask) {
 
 async function updateTask(taskId, updatedTask) {
   try {
-    const updatedTaskResponse = await todosApi.put(
+    const updatedTaskResponse = await tasksApi.put(
       `${API_TODOS_ENDPOINT}/${taskId}`,
       updatedTask,
     );
@@ -48,7 +51,7 @@ async function updateTask(taskId, updatedTask) {
 
 async function deleteTask(taskId) {
   try {
-    const deletedTaskResponse = await todosApi.delete(
+    const deletedTaskResponse = await tasksApi.delete(
       `${API_TODOS_ENDPOINT}/${taskId}`,
     );
     return deletedTaskResponse;
@@ -61,4 +64,64 @@ async function deleteTask(taskId) {
   }
 }
 
-export { getTasks, createTask, updateTask, deleteTask };
+async function getDones() {
+  try {
+    const donesData = await tasksApi.get(API_DONES_ENDPOINT);
+    return donesData.dones;
+  } catch (error) {
+    console.error(
+      "Error getting dones:",
+      error.response ? error.response.data : error.message,
+    );
+    throw error;
+  }
+}
+
+async function deleteDone(doneId) {
+  try {
+    const deletedDoneResponse = await tasksApi.delete(
+      `${API_DONES_ENDPOINT}/${doneId}`,
+    );
+    return deletedDoneResponse;
+  } catch (error) {
+    console.error(
+      "Error deleting done task:",
+      error.response ? error.response.data : error.message,
+    );
+    throw error;
+  }
+}
+
+async function undoDone(doneId) {
+  try {
+    const doneToUndo = await tasksApi.get(
+      `${API_DONES_ENDPOINT}/${doneId}`,
+    );
+
+    await tasksApi.delete(`${API_DONES_ENDPOINT}/${doneId}`);
+
+    const undoneTodo = await tasksApi.post(
+      API_TODOS_ENDPOINT,
+      doneToUndo,
+    );
+
+    return undoneTodo;
+  } catch (error) {
+    // Handle errors
+    console.error(
+      "Error undoing done task:",
+      error.response ? error.response.data : error.message,
+    );
+    throw error;
+  }
+}
+
+export {
+  getTasks,
+  createTask,
+  updateTask,
+  deleteTask,
+  getDones,
+  deleteDone,
+  undoDone,
+};
