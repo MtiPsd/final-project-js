@@ -1,13 +1,17 @@
-export function handleNavigation() {
-  const path = window.location.hash.slice(1);
+// import Todo from "../pages/Todos.js";
+// import Sidebar from "../pages/Sidebar";
 
-  const routes = {
-    "/": "This is the home page.",
-    "/dones": "This is the dones page.",
-    "/contact": "This is the contact page.",
-  };
+// export function handleNavigation() {
+//   const path = window.location.hash.slice(1);
 
-  const content = routes[path] || "Page not found";
+//   const routes = {
+//     "/": Todo(),
+//     "/dones": "This is the dones page.",
+//   };
 
-  document.getElementById("content__list").innerHTML = content;
-}
+//   const content = routes[path] || "Page not found";
+
+//   document
+//     .getElementById("container")
+//     .insertAdjacentHTML("beforeend", Sidebar() + content);
+// }

@@ -267,9 +267,21 @@ a:visited {
   box-shadow: var(--button-box-shadow);
   font-size: var(--font-size-md);
   font-weight: 700;
+  cursor: pointer;
   display: flex;
   padding: 1rem;
   gap: 1rem;
   align-items: center;
   justify-content: start;
+}
+
+#dones-content {
+  display: none;
+}
+
+.hide {
+  display: none;
+}
+.show {
+  display: block;
 }

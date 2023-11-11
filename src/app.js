@@ -1,7 +1,6 @@
 "use strict";
 
 import taskItem from "./components/TaskItem.js";
-import { handleNavigation } from "./routes/route.js";
 import { createTask, getTasks } from "./services/tasksService.js";
 
 // document.addEventListener("DOMContentLoaded", async () => {
@@ -52,4 +51,27 @@ import { createTask, getTasks } from "./services/tasksService.js";
 //   });
 // }
 
-window.addEventListener("hashchange", handleNavigation);
+function displayContent() {
+  const todosContent = document.getElementById("todos-content");
+  const donesContent = document.getElementById("dones-content");
+  const showCurrent = document.getElementById("current-toggle");
+  const showDones = document.getElementById("done-toggle");
+
+  let isShowingTodos = true; // Initial state
+
+  showCurrent.addEventListener("click", () => {
+    if (!isShowingTodos) {
+      todosContent.style.display = "block";
+      donesContent.style.display = "none";
+      isShowingTodos = true;
+    }
+  });
+
+  showDones.addEventListener("click", () => {
+    if (isShowingTodos) {
+      todosContent.style.display = "none";
+      donesContent.style.display = "block";
+      isShowingTodos = false;
+    }
+  });
+}
