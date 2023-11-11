@@ -13,8 +13,6 @@ const completeBtn = document.getElementById("icon--check");
 const editBtn = document.getElementById("icon--edit");
 const deleteBtn = document.getElementById("icon--delete");
 
-const btn = document.getElementById("btn");
-
 export default async function renderTodosUI() {
   const tasks = await getTasks();
   createCurrentTasks(tasks);
