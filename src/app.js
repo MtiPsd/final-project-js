@@ -1,16 +1,32 @@
 "use strict";
 
-import {
-  createTask,
-  deleteTask,
-  getDones,
-  getTasks,
-  undoDone,
-  updateTask,
-} from "./services/tasksService.js";
+contentList.insertAdjacentHTML(
+  "beforeend",
+  taskItem({
+    isDone: false,
+    title: "title",
+  }),
+);
 
-const btn = document.getElementById("btn");
+function onCheck(e) {
+  const newTodo = {
+    id: 1,
+    title: "Buy groceries",
+  };
 
-btn.addEventListener("click", async e => {
-  const data = await undoDone(2);
+  createTask(newTodo);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("task--input");
+  const checkBtn = document.getElementById("icon--check");
+  const editBtn = document.getElementById("icon--edit");
+  const undoBtn = document.getElementById("done__icon--undo");
+  const deleteBtn = document.getElementById("icon--delete");
+
+  console.log(checkBtn);
+  checkBtn.addEventListener("click", onCheck);
+  // editBtn?.addEventListener("click", onEdit);
+  // undoBtn?.addEventListener("click", onUndo);
+  // deleteBtn?.addEventListener("click", onDelete);
 });
