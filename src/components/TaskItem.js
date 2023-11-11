@@ -26,7 +26,7 @@ function taskItem({ isDone, title }) {
               <div class="icon done__icon--delete" id="done__icon--delete">
                <box-icon name="trash"></box-icon>
               </div>
-               `
+              `
         }
       </div>
     </li>

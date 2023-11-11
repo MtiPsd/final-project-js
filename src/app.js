@@ -3,53 +3,49 @@
 import taskItem from "./components/TaskItem.js";
 import { createTask, getTasks } from "./services/tasksService.js";
 
-// document.addEventListener("DOMContentLoaded", async () => {
-//   // const input = document.getElementById("task--input");
-//   // const checkBtn = document.getElementById("icon--check");
-//   // const editBtn = document.getElementById("icon--edit");
-//   // const undoBtn = document.getElementById("done__icon--undo");
-//   // const deleteBtn = document.getElementById("icon--delete");
-//   // checkBtn.addEventListener("click", onCheck);
-//   // editBtn?.addEventListener("click", onEdit);
-//   // undoBtn?.addEventListener("click", onUndo);
-//   // deleteBtn?.addEventListener("click", onDelete);
+document.addEventListener("DOMContentLoaded", async () => {
+  displayContent();
 
-//   const tasks = await getTasks();
-//   renderTodosUI(tasks);
-// });
+  renderUI();
+});
 
-// const contentList = document.getElementById("content__list");
+const contentList = document.getElementById("content__list");
 
-// function renderTodosUI(tasks) {
-//   contentList.innerHTML = "";
+async function renderUI() {
+  const tasks = await getTasks();
+  createCurrentTasks(tasks);
+  console.log(tasks);
+}
 
-//   tasks.forEach(task => {
-//     contentList.insertAdjacentHTML(
-//       "beforeend",
-//       taskItem({
-//         isDone: false,
-//         title: task.title.toString(),
-//         onCheck: () => {
-//           console.log("checked");
-//         },
-//       }),
-//     );
-//   });
-// }
+function createCurrentTasks(tasks) {
+  contentList.innerHTML = "";
 
-// function renderDonesUI(tasks) {
-//   contentList.innerHTML = "";
+  tasks.forEach(task => {
+    contentList.insertAdjacentHTML(
+      "beforeend",
+      taskItem({
+        isDone: false,
+        title: task.title.toString(),
+      }),
+    );
+  });
+}
 
-//   tasks.forEach(task => {
-//     contentList.insertAdjacentHTML(
-//       "beforeend",
-//       taskItem({
-//         isDone: true,
-//         title: task.title.toString(),
-//       }),
-//     );
-//   });
-// }
+function createDoneTasks(tasks) {
+  contentList.innerHTML = "";
+
+  tasks.forEach(task => {
+    contentList.insertAdjacentHTML(
+      "beforeend",
+      taskItem({
+        isDone: true,
+        title: task.title.toString(),
+      }),
+    );
+  });
+}
+
+///////////////////////////////////////////////
 
 function displayContent() {
   const todosContent = document.getElementById("todos-content");
@@ -75,3 +71,20 @@ function displayContent() {
     }
   });
 }
+
+//////////////////// CREATE /////////////////////////////////
+
+const input = document.getElementById("task--input");
+const addTaskBtn = document.getElementById("task--btn");
+
+input.addEventListener("change", addTask);
+function addTask(e) {
+  const title = e.target.value.trim();
+  const newTask = { title };
+  createTask(newTask);
+  renderUI();
+}
+
+addTaskBtn.addEventListener("click", async e => {
+  await createTask(newTask);
+});
