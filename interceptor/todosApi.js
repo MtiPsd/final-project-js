@@ -9,13 +9,20 @@ const tasksApi = axios.create({
 
 tasksApi.interceptors.request.use(
   config => {
-    config.headers = {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    };
+    const isRequestBodyObject =
+      ["POST", "PUT", "PATCH"].includes(config.method) &&
+      typeof config.data === "object";
 
-    // Set timeout for the request (you can customize this based on your needs)
-    config.timeout = config.timeout || DEFAULT_TIMEOUT;
+    config = {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      timeout: config.timeout || DEFAULT_TIMEOUT,
+      data: isRequestBodyObject
+        ? JSON.stringify(config.data)
+        : config.data,
+    };
 
     return config;
   },
@@ -29,7 +36,6 @@ tasksApi.interceptors.response.use(
     return res.data;
   },
   err => {
-    // Handle errors in the response
     if (err.response) {
       if (err.response.status === 404) {
         // Handle 404 Not Found (wrong endpoint)
