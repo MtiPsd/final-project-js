@@ -1,9 +1,9 @@
-function taskItem({ isDone, title }) {
+function taskItem({ isDone, title, id }) {
   return `
-    <li class="content__item">
+    <li class="content__item" " >
       <p>${title}</p>
     
-      <div class="icons">
+      <div class="icons" data-id="${id}>
         ${
           !isDone
             ? `<div class="icon icon--check" id="icon--check" >

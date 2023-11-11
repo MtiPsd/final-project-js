@@ -2,10 +2,10 @@ import {
   createTask,
   getTasks,
   updateTask,
-} from "../services/tasksService";
-import { clearInput } from "../utils/utils";
+} from "../services/tasksService.js";
+import { clearInput } from "../utils/utils.js";
 
-import taskItem from "./TaskItem";
+import taskItem from "./TaskItem.js";
 
 const contentList = document.getElementById("content__list");
 const input = document.getElementById("task--input");
@@ -28,6 +28,7 @@ function createCurrentTasks(tasks) {
       taskItem({
         isDone: false,
         title: task.title.toString(),
+        id: task.id,
       }),
     );
   });
@@ -47,8 +48,10 @@ function addTask(e) {
 
 function editTask(e) {
   const title = e.target.value.trim();
-  const newTask = { title };
-  updateTask();
+  const taskId = this.parentElement.dataset.id;
+  const updatedTask = { title };
+
+  updateTask(taskId, updatedTask);
   renderTodosUI();
 }
 
@@ -57,5 +60,5 @@ function editTask(e) {
 ////////////////// LISTENERS //////////////////
 input.addEventListener("change", addTask);
 addTaskBtn.addEventListener("click", addTask);
-editBtn.addEventListener("click", editTask);
-deleteBtn.addEventListener("click", editTask);
+// editBtn.addEventListener("click", editTask);
+// deleteBtn.addEventListener("click", editTask);
