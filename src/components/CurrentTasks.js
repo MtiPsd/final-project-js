@@ -4,7 +4,6 @@ import {
   updateTask,
 } from "../services/tasksService.js";
 import { clearInput } from "../utils/utils.js";
-
 import taskItem from "./TaskItem.js";
 
 const contentList = document.getElementById("content__list");
@@ -47,12 +46,22 @@ function addTask(e) {
 //////////////////// EDIT //////////////////
 
 function editTask(e) {
-  const title = e.target.value.trim();
-  const taskId = this.parentElement.dataset.id;
-  const updatedTask = { title };
+  console.log(e.target.matches("#icon--edit"));
 
-  updateTask(taskId, updatedTask);
-  renderTodosUI();
+  const target = e.target;
+  if (target.matches("#icon--edit")) {
+    console.log("hey");
+    input.focus();
+    const taskId = target.parentElement.dataset.id;
+
+    input.addEventListener("change", e => {
+      const title = e.target.value.trim();
+      const updatedTask = { title };
+
+      updateTask(taskId, updatedTask);
+      renderTodosUI();
+    });
+  }
 }
 
 //////////////////// DELETE //////////////////
@@ -60,5 +69,5 @@ function editTask(e) {
 ////////////////// LISTENERS //////////////////
 input.addEventListener("change", addTask);
 addTaskBtn.addEventListener("click", addTask);
-// editBtn.addEventListener("click", editTask);
+contentList.addEventListener("click", editTask);
 // deleteBtn.addEventListener("click", editTask);
