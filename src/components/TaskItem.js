@@ -1,12 +1,4 @@
-function taskItem({
-  isDone,
-  title,
-  onDelete,
-  onEdit,
-  onCheck,
-  onUndoCompleted,
-  onDeleteCompleted,
-}) {
+function taskItem({ isDone, title }) {
   return `
     <li class="content__item">
       <p>${title}</p>
@@ -36,8 +28,6 @@ function taskItem({
               </div>
                `
         }
-      
-  
       </div>
     </li>
   `;
