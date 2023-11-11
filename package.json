@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "server": "json-server --watch data/cities.json --port 8000 --delay 500"
+  },
+  "dependencies": {
+    "axios": "^1.6.1"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.4"
+  }
+}
