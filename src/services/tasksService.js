@@ -67,7 +67,7 @@ async function deleteTask(taskId) {
 async function getDones() {
   try {
     const donesData = await tasksApi.get(API_DONES_ENDPOINT);
-    return donesData.dones;
+    return donesData;
   } catch (error) {
     console.error(
       "Error getting dones:",
