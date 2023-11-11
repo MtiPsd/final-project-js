@@ -14,6 +14,7 @@ tasksApi.interceptors.request.use(
       typeof config.data === "object";
 
     config = {
+      ...config,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -48,17 +49,6 @@ tasksApi.interceptors.response.use(
       }
     } else if (err.request) {
       console.error("No response received");
-
-      // if (
-      //   err.message === "Network Error" ||
-      //   err.code === "ECONNABORTED"
-      // ) {
-      //   console.error(
-      //     "Server is unreachable or no internet connection.",
-      //   );
-      // } else {
-      //   console.error("Unknown error:", err.message);
-      // }
     } else {
       console.error("Error:", err.message);
     }
