@@ -1,24 +1,8 @@
 {
   "todos": [
     {
-      "title": "reza",
+      "title": "new title",
       "id": 1
-    },
-    {
-      "title": "rza",
-      "id": 2
-    },
-    {
-      "title": "ger",
-      "id": 3
-    },
-    {
-      "title": "]",
-      "id": 4
-    },
-    {
-      "title": "wrg",
-      "id": 5
     }
   ],
   "dones": []

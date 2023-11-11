@@ -285,3 +285,7 @@ a:visited {
 .show {
   display: block;
 }
+
+#box-icon {
+  pointer-events: none;
+}

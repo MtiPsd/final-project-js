@@ -3,14 +3,14 @@
 import renderTodosUI from "./components/CurrentTasks.js";
 import renderDonesUI from "./components/DoneTasks.js";
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
   const todosContent = document.getElementById("todos-content");
   const donesContent = document.getElementById("dones-content");
   const showCurrent = document.getElementById("current-toggle");
   const showDones = document.getElementById("done-toggle");
 
   // show items when page loads
-  await renderTodosUI();
+  renderTodosUI();
 
   let isShowingTodos = true;
 
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       todosContent.style.display = "block";
       donesContent.style.display = "none";
       isShowingTodos = true;
-      await renderTodosUI();
+      renderTodosUI();
     }
   });
 
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       todosContent.style.display = "none";
       donesContent.style.display = "block";
       isShowingTodos = false;
-      await renderDonesUI();
+      renderDonesUI();
     }
   });
 });

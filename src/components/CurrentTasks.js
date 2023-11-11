@@ -13,6 +13,8 @@ const completeBtn = document.getElementById("icon--check");
 const editBtn = document.getElementById("icon--edit");
 const deleteBtn = document.getElementById("icon--delete");
 
+const btn = document.getElementById("btn");
+
 export default async function renderTodosUI() {
   const tasks = await getTasks();
   createCurrentTasks(tasks);
@@ -45,29 +47,20 @@ function addTask(e) {
 
 //////////////////// EDIT //////////////////
 
-function editTask(e) {
-  console.log(e.target.matches("#icon--edit"));
+// function editTask(e) {
+//   const target = e.target;
+//   if (target.matches("#icon--edit")) {
+//     input.focus();
+//     const taskId = target.parentElement.dataset.id;
+//     // console.log(taskId);
 
-  const target = e.target;
-  if (target.matches("#icon--edit")) {
-    console.log("hey");
-    input.focus();
-    const taskId = target.parentElement.dataset.id;
-
-    input.addEventListener("change", e => {
-      const title = e.target.value.trim();
-      const updatedTask = { title };
-
-      updateTask(taskId, updatedTask);
-      renderTodosUI();
-    });
-  }
-}
+//   }
+// }
 
 //////////////////// DELETE //////////////////
 
 ////////////////// LISTENERS //////////////////
 input.addEventListener("change", addTask);
 addTaskBtn.addEventListener("click", addTask);
-contentList.addEventListener("click", editTask);
+// contentList.addEventListener("click", editTask);
 // deleteBtn.addEventListener("click", editTask);
