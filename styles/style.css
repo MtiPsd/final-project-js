@@ -21,7 +21,8 @@ body {
 :root {
   --color-primary: #c06060;
   --color-tasks: #dd63cc;
-  --color-button-primary: #4dd083;
+  --color-tasks-low-bright: #;
+  --color-button-primary: rgb(95, 101, 98);
   --color-button-secondary: #5163ed;
   --color-input: #49a6d1;
   --color-input--focus: #4295bc;
@@ -34,6 +35,7 @@ body {
   --color-modal: #6be0af;
   --color-modal-btn: #56e792;
   --color-modal-close: #864343;
+  --color-loading: #49a6d1;
 
   --font-size-bg: 4.3rem;
   --font-size-md: 1.6rem;
@@ -200,9 +202,64 @@ a:visited {
   border: var(--standard-border);
   box-shadow: var(--container-box-shadow);
   background-color: var(--color-tasks);
+  transition: all 0.3s ease-in-out;
+}
+
+.content__item.loading {
+  position: relative;
+  overflow: hidden;
+  background-color: #c06060; /* Background color of the element */
+}
+
+.loading::before,
+.loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    #c06060 50%,
+    transparent 100%
+  );
+  animation: loading 1.5s infinite linear;
+}
+
+.loading::after {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    #dd63cc 50%,
+    transparent 100%
+  );
+  transform: scaleX(-1);
+}
+
+@keyframes loading {
+  100% {
+    left: 100%;
+  }
+}
+
+.content__item.loading .icon {
+  pointer-events: none;
+  background-color: transparent;
 }
 
 .content__item.completed {
+  box-shadow: none;
+  background-color: var(--color-tasks-low-bright);
+}
+.content__item.completed::after {
+  content: "\2713";
+  text-decoration: line-through;
+}
+
+.content__item.completed .icon {
+  display: none;
 }
 
 .icons {
