@@ -27,7 +27,6 @@
 
         <div class="devider"></div>
 
-        <button id="btn">click</button>
         <!-- ------------ task list & items ------------ -->
 
         <ul class="content__list" id="content__list"></ul>
@@ -46,7 +45,6 @@
 
         <ul class="content__list" id="content__list"></ul>
       </div>
-      `
 
       <div class="sidebar">
         <div class="title">
@@ -65,18 +63,24 @@
       </div>
     </div>
 
+    <!-- ================= Modal ================= -->
+
     <div class="modal" id="modal">
       <div class="modal-content">
         <div>
           <p>Edit your task</p>
-          <div class="close-modal-btn">&times;</div>
+          <div class="close-modal-btn" id="close-modal-btn">
+            &times;
+          </div>
         </div>
 
         <input type="text" id="modal-input" class="modal--input" />
 
         <div class="modal-btn-wrapper">
-          <button class="modal--btn">Cancel</button>
-          <button class="modal--btn">Save</button>
+          <button class="modal--btn" id="modal--cancel">
+            Cancel
+          </button>
+          <button class="modal--btn" id="modal--save">Save</button>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import {
   getTasks,
   updateTask,
 } from "../services/tasksService.js";
-import { clearInput } from "../utils/utils.js";
+import { clearInput, closeModal, openModal } from "../utils/utils.js";
 import taskItem from "./TaskItem.js";
 
 const contentList = document.getElementById("content__list");
@@ -12,13 +12,23 @@ const addTaskBtn = document.getElementById("task--btn");
 const completeBtn = document.getElementById("icon--check");
 const editBtn = document.getElementById("icon--edit");
 const deleteBtn = document.getElementById("icon--delete");
+const modal = document.getElementById("modal");
+const saveChangesBtn = document.getElementById("modal--save");
+const modalInput = document.getElementById("modal-input");
 
-export default async function renderTodosUI() {
-  const tasks = await getTasks();
-  createCurrentTasks(tasks);
+//////////////////// Get ////////////////////
+
+export default async function getTodos() {
+  try {
+    const tasks = await getTasks();
+    // Update UI
+    renderTodosUI(tasks);
+  } catch (error) {
+    console.error("Error getting tasks:", error.message);
+  }
 }
 
-function createCurrentTasks(tasks) {
+function renderTodosUI(tasks) {
   contentList.innerHTML = "";
 
   tasks.forEach(task => {
@@ -33,32 +43,68 @@ function createCurrentTasks(tasks) {
   });
 }
 
-//////////////////// ADD //////////////////
+//////////////////// ADD ////////////////////
 
-function addTask(e) {
+async function addTask(e) {
   const title = e.target.value.trim();
-  const newTask = { title };
-  createTask(newTask);
-  renderTodosUI();
-  clearInput(input);
+  if (title) {
+    try {
+      const newTask = { title };
+      const createdTask = await createTask(newTask);
+
+      // Update UI with the newly created task
+      contentList.insertAdjacentHTML(
+        "beforeend",
+        taskItem({
+          isDone: false,
+          title: createdTask.title.toString(),
+          id: createdTask.id,
+        }),
+      );
+
+      clearInput(input);
+    } catch (error) {
+      console.error("Error adding task:", error.message);
+    }
+  }
 }
 
 //////////////////// EDIT //////////////////
 
-// function editTask(e) {
-//   const target = e.target;
-//   if (target.matches("#icon--edit")) {
-//     input.focus();
-//     const taskId = target.parentElement.dataset.id;
-//     // console.log(taskId);
+function openModalOnClick(e) {
+  const target = e.target;
+  if (target.matches("#icon--edit")) {
+    const taskId = target.parentElement.dataset.id;
+    saveChangesBtn.dataset.id = taskId;
+    openModal(modal);
+  }
+}
 
-//   }
-// }
+async function onEdit() {
+  const taskId = saveChangesBtn.dataset.id;
+  const title = modalInput.value.trim();
+  if (title && taskId) {
+    try {
+      const updatedTask = { title };
+      await updateTask(taskId, updatedTask);
+
+      // Update UI
+      const taskItem = document.querySelector(`[data-id="${taskId}"]`)
+        .parentElement.firstElementChild;
+      taskItem.textContent = title;
+    } catch (error) {
+      console.error("Error editing task:", error);
+    }
+  }
+
+  closeModal(modal);
+}
 
 //////////////////// DELETE //////////////////
 
 ////////////////// LISTENERS //////////////////
 input.addEventListener("change", addTask);
 addTaskBtn.addEventListener("click", addTask);
-// contentList.addEventListener("click", editTask);
+contentList.addEventListener("click", openModalOnClick);
+saveChangesBtn.addEventListener("click", onEdit);
 // deleteBtn.addEventListener("click", editTask);

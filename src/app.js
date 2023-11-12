@@ -2,6 +2,7 @@
 
 import renderTodosUI from "./components/CurrentTasks.js";
 import renderDonesUI from "./components/DoneTasks.js";
+import { handleModal } from "./utils/utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const todosContent = document.getElementById("todos-content");
@@ -31,22 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
       renderDonesUI();
     }
   });
-});
 
-///////////////////////// Modal /////////////////////////
-
-document.getElementById("btn").addEventListener("click", function () {
-  document.getElementById("modal").style.display = "block";
-});
-
-// document
-//   .getElementById("closeModalBtn")
-//   .addEventListener("click", function () {
-//     document.getElementById("myModal").style.display = "none";
-//   });
-
-window.addEventListener("click", function (event) {
-  if (event.target === document.getElementById("modal")) {
-    document.getElementById("modal").style.display = "none";
-  }
+  handleModal();
 });
