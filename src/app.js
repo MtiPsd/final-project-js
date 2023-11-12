@@ -1,7 +1,7 @@
 "use strict";
 
-import getTodos from "./components/CurrentTasks.js";
-import getDoneTasks from "./components/DoneTasks.js";
+import { getCurrentTasks } from "./components/CurrentTasks.js";
+import { getCompletedTasks } from "./components/CompletedTasks.js";
 import { handleModal } from "./utils/utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const showDones = document.getElementById("done-toggle");
 
   // show items when page loads
-  getTodos();
+  getCurrentTasks();
 
   let isShowingTodos = true;
 
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       todosContent.style.display = "block";
       donesContent.style.display = "none";
       isShowingTodos = true;
-      getTodos();
+      getCurrentTasks();
     }
   });
 
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       todosContent.style.display = "none";
       donesContent.style.display = "block";
       isShowingTodos = false;
-      getDoneTasks();
+      getCompletedTasks();
     }
   });
 

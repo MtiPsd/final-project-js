@@ -72,17 +72,27 @@ export function updateUIAfterEdit(taskId, newTitle) {
   taskTitleElem.textContent = newTitle;
 }
 
-export function updateUIAfterGet(tasks, list) {
+export function updateUIAfterGet(tasks, list, isDone) {
   list.innerHTML = "";
 
   tasks.forEach(task => {
     list.insertAdjacentHTML(
       "beforeend",
       taskItem({
-        isDone: false,
+        isDone,
         title: task.title.toString(),
         id: task.id,
       }),
     );
   });
+}
+
+export function updateUIAfterUndo(taskId) {
+  const completedTask = document.querySelector(
+    `[data-id="${taskId}"]`,
+  ).parentElement;
+
+  if (completedTask) {
+    completedTask.remove();
+  }
 }
