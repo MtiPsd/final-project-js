@@ -1,6 +1,6 @@
 import {
-  API_DONES_ENDPOINT,
-  API_TODOS_ENDPOINT,
+  API_COMPLETED_ENDPOINT,
+  API_CURRENTS_ENDPOINT,
 } from "../config/apiConfig.js";
 import { tasksApi } from "../interceptor/tasksApi.js";
 
@@ -8,7 +8,7 @@ import { tasksApi } from "../interceptor/tasksApi.js";
 
 export async function getCurrentTasksService() {
   try {
-    const todos = await tasksApi.get(API_TODOS_ENDPOINT);
+    const todos = await tasksApi.get(API_CURRENTS_ENDPOINT);
     return todos;
   } catch (error) {
     console.error(
@@ -22,7 +22,7 @@ export async function getCurrentTasksService() {
 export async function createCurrentTaskService(newTask) {
   try {
     const createdTask = await tasksApi.post(
-      API_TODOS_ENDPOINT,
+      API_CURRENTS_ENDPOINT,
       newTask,
     );
     return createdTask;
@@ -38,7 +38,7 @@ export async function createCurrentTaskService(newTask) {
 export async function updateCurrentTaskService(taskId, updatedTask) {
   try {
     const updatedTaskResponse = await tasksApi.put(
-      `${API_TODOS_ENDPOINT}/${taskId}`,
+      `${API_CURRENTS_ENDPOINT}/${taskId}`,
       updatedTask,
     );
     return updatedTaskResponse;
@@ -54,7 +54,7 @@ export async function updateCurrentTaskService(taskId, updatedTask) {
 export async function deleteCurrentTaskService(taskId) {
   try {
     const deletedTaskResponse = await tasksApi.delete(
-      `${API_TODOS_ENDPOINT}/${taskId}`,
+      `${API_CURRENTS_ENDPOINT}/${taskId}`,
     );
     return deletedTaskResponse;
   } catch (error) {
@@ -68,17 +68,17 @@ export async function deleteCurrentTaskService(taskId) {
 
 export async function completeCurrentTaskService(taskId) {
   try {
-    // Fetch the task to be marked as complete from "todos"
+    // Fetch the task to be marked as complete from "currents"
     const taskToComplete = await tasksApi.get(
-      `${API_TODOS_ENDPOINT}/${taskId}`,
+      `${API_CURRENTS_ENDPOINT}/${taskId}`,
     );
 
-    // Delete the task from "todos"
-    await tasksApi.delete(`${API_TODOS_ENDPOINT}/${taskId}`);
+    // Delete the task from "currents"
+    await tasksApi.delete(`${API_CURRENTS_ENDPOINT}/${taskId}`);
 
-    // Add the completed task to "dones"
+    // Add the completed task to "completed"
     const completedTask = await tasksApi.post(
-      API_DONES_ENDPOINT,
+      API_COMPLETED_ENDPOINT,
       taskToComplete,
     );
 
@@ -96,7 +96,7 @@ export async function completeCurrentTaskService(taskId) {
 
 export async function getCompletedTasksService() {
   try {
-    const donesData = await tasksApi.get(API_DONES_ENDPOINT);
+    const donesData = await tasksApi.get(API_COMPLETED_ENDPOINT);
     return donesData;
   } catch (error) {
     console.error(
@@ -110,7 +110,7 @@ export async function getCompletedTasksService() {
 export async function deleteCompletedTaskService(doneId) {
   try {
     const deletedDoneResponse = await tasksApi.delete(
-      `${API_DONES_ENDPOINT}/${doneId}`,
+      `${API_COMPLETED_ENDPOINT}/${doneId}`,
     );
     return deletedDoneResponse;
   } catch (error) {
@@ -125,13 +125,13 @@ export async function deleteCompletedTaskService(doneId) {
 export async function undoCompletedTaskService(doneId) {
   try {
     const doneToUndo = await tasksApi.get(
-      `${API_DONES_ENDPOINT}/${doneId}`,
+      `${API_COMPLETED_ENDPOINT}/${doneId}`,
     );
 
-    await tasksApi.delete(`${API_DONES_ENDPOINT}/${doneId}`);
+    await tasksApi.delete(`${API_COMPLETED_ENDPOINT}/${doneId}`);
 
     const undoneTodo = await tasksApi.post(
-      API_TODOS_ENDPOINT,
+      API_CURRENTS_ENDPOINT,
       doneToUndo,
     );
 
