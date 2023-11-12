@@ -1,4 +1,7 @@
-import { API_BASE_URL } from "../config/apiConfig.js";
+import {
+  API_BASE_URL,
+  DEFAULT_TIMEOUT,
+} from "../config/apiConfig.js";
 
 const tasksApi = axios.create({
   baseURL: API_BASE_URL,
@@ -16,7 +19,7 @@ tasksApi.interceptors.request.use(
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      // timeout: config.timeout || DEFAULT_TIMEOUT,
+      timeout: config.timeout || DEFAULT_TIMEOUT,
       data: isRequestBodyObject
         ? JSON.stringify(config.data)
         : config.data,
