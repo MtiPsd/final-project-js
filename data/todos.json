@@ -1,13 +1,4 @@
 {
   "todos": [],
-  "dones": [
-    {
-      "title": "code",
-      "id": 2
-    },
-    {
-      "title": "ccode",
-      "id": 3
-    }
-  ]
+  "dones": []
 }

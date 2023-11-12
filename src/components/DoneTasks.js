@@ -7,7 +7,7 @@ import taskItem from "./TaskItem.js";
 
 const undoDoneBtn = document.getElementById("done__icon--undo");
 const deleteDoneBtn = document.getElementById("done__icon--delete");
-const doneContentList = document.getElementById(
+const completedContentList = document.getElementById(
   "content__list--dones",
 );
 
@@ -21,10 +21,10 @@ export default async function getDoneTasks() {
 }
 
 function createDoneTasks(tasks) {
-  doneContentList.innerHTML = "";
+  completedContentList.innerHTML = "";
 
   tasks.forEach(task => {
-    doneContentList.insertAdjacentHTML(
+    completedContentList.insertAdjacentHTML(
       "beforeend",
       taskItem({
         isDone: true,
@@ -80,5 +80,5 @@ function deleteCompletedTask(e) {
 }
 
 ////////////////// LISTENERS //////////////////
-doneContentList.addEventListener("click", undoCompletedTask);
-doneContentList.addEventListener("click", deleteCompletedTask);
+completedContentList.addEventListener("click", undoCompletedTask);
+completedContentList.addEventListener("click", deleteCompletedTask);
