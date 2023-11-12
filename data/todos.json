@@ -1,18 +1,5 @@
 {
-  "currents": [
-    {
-      "title": "reza",
-      "id": 1
-    },
-    {
-      "title": "rza",
-      "id": 2
-    },
-    {
-      "title": "swim",
-      "id": 3
-    }
-  ],
+  "currents": [],
   "completed": [
     {
       "title": "swim",

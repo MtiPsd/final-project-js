@@ -56,7 +56,7 @@ handleOpenModal(todosContentList);
 async function handleEditCurrentTask() {
   const title = modalInput.value.trim();
   const taskID = saveChangesBtn.dataset.id;
-
+  console.log(taskID);
   if (title && taskID) {
     try {
       const updatedTask = { title };
