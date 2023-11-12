@@ -6,21 +6,19 @@ import {
   updateCurrentTaskService,
 } from "../services/tasksService.js";
 import {
-  closeModal,
-  openModal,
   updateUIAfterAdd,
   updateUIAfterComplete,
   updateUIAfterDelete,
   updateUIAfterEdit,
   updateUIAfterGet,
 } from "../utils/utils.js";
+import { closeModal, handleOpenModal } from "./Modal.js";
 
 const todosContentList = document.getElementById(
   "content__list--todos",
 );
 const input = document.getElementById("task--input");
 const addTaskBtn = document.getElementById("task--btn");
-const modal = document.getElementById("modal");
 const saveChangesBtn = document.getElementById("modal--save");
 const modalInput = document.getElementById("modal-input");
 
@@ -37,7 +35,7 @@ export async function getCurrentTasks() {
 
 //////////////////// ADD ////////////////////
 
-async function handleAddCurrentTasks(e) {
+async function handleAddCurrentTask(e) {
   const title = e.target.value.trim();
   if (title) {
     try {
@@ -53,23 +51,17 @@ async function handleAddCurrentTasks(e) {
 
 //////////////////// EDIT //////////////////
 
-let editingTaskId;
+handleOpenModal(todosContentList);
 
-function openModalOnClick(e) {
-  const target = e.target;
-  if (target.matches("#icon--edit")) {
-    editingTaskId = target.parentElement.dataset.id;
-    openModal(modal);
-  }
-}
-
-async function handleEditCurrentTasks() {
+async function handleEditCurrentTask() {
   const title = modalInput.value.trim();
-  if (title && editingTaskId) {
+  const taskID = saveChangesBtn.dataset.id;
+  console.log(taskID);
+  if (title && taskID) {
     try {
       const updatedTask = { title };
-      await updateCurrentTaskService(editingTaskId, updatedTask);
-      updateUIAfterEdit(editingTaskId, title);
+      await updateCurrentTaskService(taskID, updatedTask);
+      updateUIAfterEdit(taskID, title);
     } catch (error) {
       console.error("Error editing task:", error.message);
     }
@@ -80,7 +72,7 @@ async function handleEditCurrentTasks() {
 
 //////////////////// DELETE //////////////////
 
-async function handleDeleteCurrentTasks(e) {
+async function handleDeleteCurrentTask(e) {
   const target = e.target;
 
   if (target.matches("#icon--delete")) {
@@ -97,7 +89,7 @@ async function handleDeleteCurrentTasks(e) {
 
 //////////////////// COMPLETE //////////////////
 
-async function handleCompleteCurrentTasks(e) {
+async function handleCompleteCurrentTask(e) {
   const target = e.target;
 
   if (target.matches("#icon--check")) {
@@ -113,12 +105,9 @@ async function handleCompleteCurrentTasks(e) {
 }
 
 ////////////////// LISTENERS //////////////////
-input.addEventListener("change", handleAddCurrentTasks);
-addTaskBtn.addEventListener("click", handleAddCurrentTasks);
-todosContentList.addEventListener("click", openModalOnClick);
-saveChangesBtn.addEventListener("click", handleEditCurrentTasks);
-todosContentList.addEventListener("click", handleDeleteCurrentTasks);
-todosContentList.addEventListener(
-  "click",
-  handleCompleteCurrentTasks,
-);
+input.addEventListener("change", handleAddCurrentTask);
+addTaskBtn.addEventListener("click", handleAddCurrentTask);
+saveChangesBtn.addEventListener("click", handleEditCurrentTask);
+todosContentList.addEventListener("click", handleDeleteCurrentTask);
+todosContentList.addEventListener("click", handleCompleteCurrentTask);
+// todosContentList.addEventListener("click", handleOpenModal);

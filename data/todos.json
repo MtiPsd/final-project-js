@@ -1,4 +1,14 @@
 {
-  "currents": [],
-  "completed": []
+  "currents": [
+    {
+      "title": "code",
+      "id": 1
+    }
+  ],
+  "completed": [
+    {
+      "title": "swim",
+      "id": 2
+    }
+  ]
 }

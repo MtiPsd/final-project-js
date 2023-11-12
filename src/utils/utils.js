@@ -27,13 +27,16 @@ export function handleModal() {
   });
 }
 
-export function closeModal(modal) {
-  modal.style.display = "none";
+export function handleDelegation(e, selector, actionCallback) {
+  const target = e.target;
+
+  if (target.matches(selector)) {
+    const taskId = target.parentElement.dataset.id;
+    actionCallback(taskId);
+  }
 }
 
-export function openModal(modal) {
-  modal.style.display = "block";
-}
+////////////////////////////////////////////////////////////
 
 export function updateUIAfterDelete(taskId) {
   const taskLiElem = document.querySelector(
