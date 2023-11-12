@@ -10,8 +10,8 @@
     <title>Final Project [JS]</title>
   </head>
   <body>
-    <div class="container">
-      <div class="content">
+    <div class="container" id="container">
+      <div class="content" id="todos-content">
         <h1 class="heading-1">Things to do:</h1>
 
         <!-- ------------ input & button ------------ -->
@@ -19,62 +19,69 @@
           <input
             type="text"
             class="task--input"
+            id="task--input"
             placeholder="Type ..."
           />
-          <button class="task--btn">Add Task</button>
+          <button class="task--btn" id="task--btn">Add Task</button>
         </div>
 
         <div class="devider"></div>
 
         <!-- ------------ task list & items ------------ -->
 
-        <ul class="content__list" id="content__list">
-          <!-- ------------- content item ------------- -->
-          <!-- <li class="content__item">
-            <p>Code</p>
-
-            <div class="icons">
-              <div class="icon icon--check">
-                <box-icon name="check"></box-icon>
-              </div>
-              <div class="icon icon--edit">
-                <box-icon name="edit-alt"></box-icon>
-              </div>
-              <div class="icon icon--delete">
-                <box-icon name="trash"></box-icon>
-              </div>
-            </div>
-          </li> -->
-
-          <!-- ------------- done item ------------- -->
-          <!-- <li class="content__item">
-            <p>Code</p>
-
-            <div class="icons">
-              <div class="icon done__icon--undo">
-                <box-icon name="undo"></box-icon>
-              </div>
-              <div class="icon done__icon--delete">
-                <box-icon name="trash"></box-icon>
-              </div>
-            </div>
-          </li> -->
-        </ul>
+        <ul class="content__list" id="content__list--todos"></ul>
       </div>
+
+      <!-- ------------------------------------------------------ -->
+      <!-- ------------------------------------------------------ -->
+      <!-- ------------------------------------------------------ -->
+
+      <div class="content" id="dones-content">
+        <h1 class="heading-1">Things to do:</h1>
+
+        <div class="devider"></div>
+
+        <!-- ------------ task list & items ------------ -->
+
+        <ul class="content__list" id="content__list--dones"></ul>
+      </div>
+
       <div class="sidebar">
         <div class="title">
           <box-icon name="category-alt" rotate="90"></box-icon>
           <p>ToDo List</p>
         </div>
         <div class="sidebar__devider"></div>
-        <button class="sidebar__btn">
+        <a class="sidebar__btn" id="current-toggle">
           <box-icon name="list-ul"></box-icon>
           <p>Tasks</p>
-        </button>
-        <button class="sidebar__btn">
+        </a>
+        <a class="sidebar__btn" id="done-toggle">
           <box-icon name="task"></box-icon>
           <p>Done</p>
-        </button>
+        </a>
+      </div>
+    </div>
+
+    <!-- ================= Modal ================= -->
+
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <div>
+          <p>Edit your task</p>
+          <div class="close-modal-btn" id="close-modal-btn">
+            &times;
+          </div>
+        </div>
+
+        <input type="text" id="modal-input" class="modal--input" />
+
+        <div class="modal-btn-wrapper">
+          <button class="modal--btn" id="modal--cancel">
+            Cancel
+          </button>
+          <button class="modal--btn" id="modal--save">Save</button>
+        </div>
       </div>
     </div>
 

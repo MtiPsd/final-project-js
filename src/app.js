@@ -1,52 +1,37 @@
 "use strict";
 
-import taskItem from "./components/TaskItem.js";
-import { createTask, getTasks } from "./services/tasksService.js";
+import { getCurrentTasks } from "./components/CurrentTasks.js";
+import { getCompletedTasks } from "./components/CompletedTasks.js";
+import { handleModal } from "./utils/utils.js";
 
-document.addEventListener("DOMContentLoaded", async () => {
-  // const input = document.getElementById("task--input");
-  // const checkBtn = document.getElementById("icon--check");
-  // const editBtn = document.getElementById("icon--edit");
-  // const undoBtn = document.getElementById("done__icon--undo");
-  // const deleteBtn = document.getElementById("icon--delete");
-  // checkBtn.addEventListener("click", onCheck);
-  // editBtn?.addEventListener("click", onEdit);
-  // undoBtn?.addEventListener("click", onUndo);
-  // deleteBtn?.addEventListener("click", onDelete);
+document.addEventListener("DOMContentLoaded", () => {
+  const todosContent = document.getElementById("todos-content");
+  const donesContent = document.getElementById("dones-content");
+  const showCurrent = document.getElementById("current-toggle");
+  const showDones = document.getElementById("done-toggle");
 
-  const tasks = await getTasks();
-  renderTodosUI(tasks);
+  // show items when page loads
+  getCurrentTasks();
+
+  let isShowingTodos = true;
+
+  showCurrent.addEventListener("click", async () => {
+    if (!isShowingTodos) {
+      todosContent.style.display = "block";
+      donesContent.style.display = "none";
+      isShowingTodos = true;
+      getCurrentTasks();
+    }
+  });
+
+  showDones.addEventListener("click", async () => {
+    if (isShowingTodos) {
+      todosContent.style.display = "none";
+      donesContent.style.display = "block";
+      isShowingTodos = false;
+      getCompletedTasks();
+    }
+  });
+
+  handleModal();
 });
-
-const contentList = document.getElementById("content__list");
-
-function renderTodosUI(tasks) {
-  contentList.innerHTML = "";
-
-  tasks.forEach(task => {
-    contentList.insertAdjacentHTML(
-      "beforeend",
-      taskItem({
-        isDone: false,
-        title: task.title.toString(),
-        onCheck: () => {
-          console.log("checked");
-        },
-      }),
-    );
-  });
-}
-
-function renderDonesUI(tasks) {
-  contentList.innerHTML = "";
-
-  tasks.forEach(task => {
-    contentList.insertAdjacentHTML(
-      "beforeend",
-      taskItem({
-        isDone: true,
-        title: task.title.toString(),
-      }),
-    );
-  });
-}

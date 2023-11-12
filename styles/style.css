@@ -31,6 +31,9 @@ body {
   --color-black: #000;
   --color-text: #1a161a;
   --color-placeholder: #1a161a6d;
+  --color-modal: #6be0af;
+  --color-modal-btn: #56e792;
+  --color-modal-close: #864343;
 
   --font-size-bg: 4.3rem;
   --font-size-md: 1.6rem;
@@ -43,6 +46,10 @@ body {
   --button-box-shadow-hover: 4px 4px 0 #000000;
   --button-box-shadow-focus: 6px 6px 0 #000000;
 }
+
+/* ******************** *
+         base 
+* ********************* */
 
 li {
   list-style: none;
@@ -85,7 +92,9 @@ a:visited {
   color: #fff;
 } */
 
-/* /////////////////////////////////////////////////////////////// */
+/* ******************** *
+      main content 
+* ********************* */
 
 .container {
   height: 100dvh;
@@ -235,7 +244,9 @@ a:visited {
   background-color: var(--color-icon-tertiary);
 }
 
-/* sidebar */
+/* ******************** *
+         sidebar 
+* ********************* */
 
 .title {
   display: flex;
@@ -267,9 +278,153 @@ a:visited {
   box-shadow: var(--button-box-shadow);
   font-size: var(--font-size-md);
   font-weight: 700;
+  cursor: pointer;
   display: flex;
   padding: 1rem;
   gap: 1rem;
   align-items: center;
   justify-content: start;
+}
+
+#dones-content {
+  display: none;
+}
+
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+
+#box-icon {
+  pointer-events: none;
+}
+
+/* ******************** *
+         Modal 
+* ********************* */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  position: relative;
+  margin: 15% auto;
+  padding: 2rem 3rem;
+  height: 30%;
+  width: 30%;
+  border: var(--standard-border);
+  box-shadow: var(--modal-box-shadow);
+  background-color: var(--color-modal);
+  animation-name: modalopen;
+  animation-duration: 0.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal-content > div {
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+
+.modal-content p {
+  font-size: 2.2rem;
+  font-weight: 800;
+}
+
+.modal--input {
+  height: 4rem;
+  width: 100%;
+  margin: 0 auto;
+  background-color: var(--color-input);
+  font-size: var(--font-size-md);
+  font-weight: 800;
+  padding: 0 1.5em;
+  border: var(--standard-border);
+  box-shadow: var(--button-box-shadow);
+  transition: all 0.3s ease;
+}
+
+.modal--input:focus {
+  background-color: var(--color-input--focus);
+  box-shadow: var(--button-box-shadow-focus);
+}
+
+.modal--input::placeholder {
+  color: var(--color-placeholder);
+  font-weight: 700;
+}
+
+.modal-btn-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0 10rem;
+}
+
+.modal--btn {
+  background-color: var(--color-modal-btn);
+  height: 4rem;
+  width: 9rem;
+  border: var(--standard-border);
+  box-shadow: var(--button-box-shadow);
+  font-size: var(--font-size-md);
+  font-weight: 800;
+}
+
+.close-modal-btn {
+  background-color: var(--color-primary);
+  height: 3.5rem;
+  width: 3.5rem;
+  border: var(--standard-border);
+  box-shadow: var(--container-box-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  padding-top: 0.2rem;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.close-modal-btn:active {
+  box-shadow: none;
+  transform: translate(2px, 2px);
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
 }
