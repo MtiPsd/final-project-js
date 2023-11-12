@@ -1,22 +1,9 @@
 {
-  "todos": [
-    {
-      "title": "people",
-      "id": 4
-    }
-  ],
+  "todos": [],
   "dones": [
-    {
-      "title": "new",
-      "id": 1
-    },
     {
       "title": "code",
       "id": 2
-    },
-    {
-      "title": "reza",
-      "id": 5
     },
     {
       "title": "ccode",
