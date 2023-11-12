@@ -1,5 +1,6 @@
 import {
   createTask,
+  deleteTask,
   getTasks,
   updateTask,
 } from "../services/tasksService.js";
@@ -89,11 +90,12 @@ async function onEdit() {
       await updateTask(taskId, updatedTask);
 
       // Update UI
-      const taskItem = document.querySelector(`[data-id="${taskId}"]`)
-        .parentElement.firstElementChild;
-      taskItem.textContent = title;
+      const taskTitle = document.querySelector(
+        `[data-id="${taskId}"]`,
+      ).parentElement.firstElementChild;
+      taskTitle.textContent = title;
     } catch (error) {
-      console.error("Error editing task:", error);
+      console.error("Error editing task:", error.message);
     }
   }
 
@@ -102,9 +104,31 @@ async function onEdit() {
 
 //////////////////// DELETE //////////////////
 
+function deleteTodo(e) {
+  const target = e.target;
+
+  if (target.matches("#icon--delete")) {
+    const taskId = target.parentElement.dataset.id;
+
+    try {
+      deleteTask(taskId);
+      // Update UI after a successful delete
+      const taskLiElem = document.querySelector(
+        `[data-id="${taskId}"]`,
+      ).parentElement;
+
+      if (taskLiElem) {
+        taskLiElem.remove();
+      }
+    } catch (error) {
+      console.error("Error deleting task:", error.message);
+    }
+  }
+}
+
 ////////////////// LISTENERS //////////////////
 input.addEventListener("change", addTask);
 addTaskBtn.addEventListener("click", addTask);
 contentList.addEventListener("click", openModalOnClick);
 saveChangesBtn.addEventListener("click", onEdit);
-// deleteBtn.addEventListener("click", editTask);
+contentList.addEventListener("click", deleteTodo);

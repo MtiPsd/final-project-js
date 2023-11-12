@@ -1,9 +1,4 @@
 {
-  "todos": [
-    {
-      "title": "code",
-      "id": 1
-    }
-  ],
+  "todos": [],
   "dones": []
 }

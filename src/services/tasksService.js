@@ -115,6 +115,32 @@ async function undoDone(doneId) {
   }
 }
 
+async function completeTask(taskId) {
+  try {
+    // Fetch the task to be marked as complete from "todos"
+    const taskToComplete = await tasksApi.get(
+      `${API_TODOS_ENDPOINT}/${taskId}`,
+    );
+
+    // Delete the task from "todos"
+    await tasksApi.delete(`${API_TODOS_ENDPOINT}/${taskId}`);
+
+    // Add the completed task to "dones"
+    const completedTask = await tasksApi.post(
+      API_DONES_ENDPOINT,
+      taskToComplete,
+    );
+
+    return completedTask;
+  } catch (error) {
+    console.error(
+      "Error completing todo tasks:",
+      error.response ? error.response.data : error.message,
+    );
+    throw error;
+  }
+}
+
 export {
   getTasks,
   createTask,
@@ -123,4 +149,5 @@ export {
   getDones,
   deleteDone,
   undoDone,
+  completeTask,
 };
