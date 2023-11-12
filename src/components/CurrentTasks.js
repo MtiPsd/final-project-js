@@ -1,4 +1,5 @@
 import {
+  completeTask,
   createTask,
   deleteTask,
   getTasks,
@@ -7,7 +8,12 @@ import {
 import { clearInput, closeModal, openModal } from "../utils/utils.js";
 import taskItem from "./TaskItem.js";
 
-const contentList = document.getElementById("content__list");
+const todosContentList = document.getElementById(
+  "content__list--todos",
+);
+const doneContentList = document.getElementById(
+  "content__list--dones",
+);
 const input = document.getElementById("task--input");
 const addTaskBtn = document.getElementById("task--btn");
 const completeBtn = document.getElementById("icon--check");
@@ -30,10 +36,10 @@ export default async function getTodos() {
 }
 
 function renderTodosUI(tasks) {
-  contentList.innerHTML = "";
+  todosContentList.innerHTML = "";
 
   tasks.forEach(task => {
-    contentList.insertAdjacentHTML(
+    todosContentList.insertAdjacentHTML(
       "beforeend",
       taskItem({
         isDone: false,
@@ -54,7 +60,7 @@ async function addTask(e) {
       const createdTask = await createTask(newTask);
 
       // Update UI with the newly created task
-      contentList.insertAdjacentHTML(
+      todosContentList.insertAdjacentHTML(
         "beforeend",
         taskItem({
           isDone: false,
@@ -104,7 +110,7 @@ async function onEdit() {
 
 //////////////////// DELETE //////////////////
 
-function deleteTodo(e) {
+function onDelete(e) {
   const target = e.target;
 
   if (target.matches("#icon--delete")) {
@@ -126,9 +132,34 @@ function deleteTodo(e) {
   }
 }
 
+//////////////////// COMPLETE //////////////////
+
+async function onCheck(e) {
+  const target = e.target;
+
+  if (target.matches("#icon--check")) {
+    const taskId = target.parentElement.dataset.id;
+
+    try {
+      const movedItem = await completeTask(taskId);
+
+      const movedTaskLiElem = document.querySelector(
+        `[data-id="${taskId}"]`,
+      ).parentElement;
+
+      if (movedTaskLiElem) {
+        movedTaskLiElem.remove();
+      }
+    } catch (error) {
+      console.error("Error checking task:", error.message);
+    }
+  }
+}
+
 ////////////////// LISTENERS //////////////////
 input.addEventListener("change", addTask);
 addTaskBtn.addEventListener("click", addTask);
-contentList.addEventListener("click", openModalOnClick);
+todosContentList.addEventListener("click", openModalOnClick);
 saveChangesBtn.addEventListener("click", onEdit);
-contentList.addEventListener("click", deleteTodo);
+todosContentList.addEventListener("click", onDelete);
+todosContentList.addEventListener("click", onCheck);

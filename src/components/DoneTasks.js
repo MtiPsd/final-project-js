@@ -1,23 +1,31 @@
 import { getDones } from "../services/tasksService.js";
+import taskItem from "./TaskItem.js";
 
-const contentList = document.getElementById("content__list");
 const undoDoneBtn = document.getElementById("done__icon--undo");
 const deleteDoneBtn = document.getElementById("done__icon--delete");
+const doneContentList = document.getElementById(
+  "content__list--dones",
+);
 
-export default async function renderDonesUI() {
-  const tasks = await getDones();
-  createDoneTasks(tasks);
+export default async function getDoneTasks() {
+  try {
+    const tasks = await getDones();
+    createDoneTasks(tasks);
+  } catch (error) {
+    console.error("Error getting completed tasks:", error.message);
+  }
 }
 
 function createDoneTasks(tasks) {
-  contentList.innerHTML = "";
+  doneContentList.innerHTML = "";
 
   tasks.forEach(task => {
-    contentList.insertAdjacentHTML(
+    doneContentList.insertAdjacentHTML(
       "beforeend",
       taskItem({
         isDone: true,
         title: task.title.toString(),
+        id: task.id,
       }),
     );
   });
