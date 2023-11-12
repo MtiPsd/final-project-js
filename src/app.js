@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const showCurrent = document.getElementById("current-toggle");
   const showDones = document.getElementById("done-toggle");
 
-  // show items when page loads
   getCurrentTasks();
 
   let isShowingTodos = true;

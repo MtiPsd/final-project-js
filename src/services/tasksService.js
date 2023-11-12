@@ -25,6 +25,7 @@ export async function createCurrentTaskService(newTask) {
       API_CURRENTS_ENDPOINT,
       newTask,
     );
+
     return createdTask;
   } catch (error) {
     console.error(

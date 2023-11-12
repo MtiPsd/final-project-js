@@ -21,8 +21,7 @@ body {
 :root {
   --color-primary: #c06060;
   --color-tasks: #dd63cc;
-  --color-tasks-low-bright: #;
-  --color-button-primary: rgb(95, 101, 98);
+  --color-button-primary: #4dd083;
   --color-button-secondary: #5163ed;
   --color-input: #49a6d1;
   --color-input--focus: #4295bc;
@@ -205,6 +204,10 @@ a:visited {
   transition: all 0.3s ease-in-out;
 }
 
+/* ******************** *
+         loading 
+* ********************* */
+
 .content__item.loading {
   position: relative;
   overflow: hidden;
@@ -248,6 +251,10 @@ a:visited {
   pointer-events: none;
   background-color: transparent;
 }
+
+/* ******************** *
+       completed 
+* ********************* */
 
 .content__item.completed {
   box-shadow: none;

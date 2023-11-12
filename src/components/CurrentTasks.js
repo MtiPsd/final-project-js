@@ -37,9 +37,11 @@ export async function getCurrentTasks() {
 
 async function handleAddCurrentTask(e) {
   const title = e.target.value.trim();
+  const id = crypto.randomUUID();
+
   if (title) {
     try {
-      const newTask = { title };
+      const newTask = { title, id };
       const createdTask = await createCurrentTaskService(newTask);
 
       updateUIAfterAdd(createdTask, input, todosContentList);

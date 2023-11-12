@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "server": "json-server --watch data/todos.json --port 5124 --delay 500"
+    "server": "json-server --watch data/db.json --port 5123 --delay 500"
   },
   "dependencies": {
     "axios": "^1.6.1"
