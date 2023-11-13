@@ -99,3 +99,15 @@ export function updateUIAfterUndo(taskId) {
     completedTask.remove();
   }
 }
+
+export function showLoading(taskId) {
+  document
+    .querySelector(`[data-id="${taskId}"]`)
+    .parentElement.classList.add("loading");
+}
+
+export function hideLoading(taskId) {
+  document
+    .querySelector(`[data-id="${taskId}"]`)
+    .parentElement.classList.remove("loading");
+}

@@ -6,6 +6,8 @@ import {
   updateCurrentTaskService,
 } from "../services/tasksService.js";
 import {
+  hideLoading,
+  showLoading,
   updateUIAfterAdd,
   updateUIAfterComplete,
   updateUIAfterDelete,
@@ -26,10 +28,12 @@ const modalInput = document.getElementById("modal-input");
 
 export async function getCurrentTasks() {
   try {
+    // showLoading();
     const tasks = await getCurrentTasksService();
     updateUIAfterGet(tasks, todosContentList);
   } catch (error) {
     console.error("Error getting tasks:", error.message);
+  } finally {
   }
 }
 
@@ -41,6 +45,7 @@ async function handleAddCurrentTask(e) {
 
   if (title) {
     try {
+      // showLoading(id);
       const newTask = { title, id };
       const createdTask = await createCurrentTaskService(newTask);
 
@@ -58,14 +63,16 @@ handleOpenModal(todosContentList);
 async function handleEditCurrentTask() {
   const title = modalInput.value.trim();
   const taskID = saveChangesBtn.dataset.id;
-  console.log(taskID);
   if (title && taskID) {
     try {
+      showLoading(taskID);
       const updatedTask = { title };
       await updateCurrentTaskService(taskID, updatedTask);
       updateUIAfterEdit(taskID, title);
     } catch (error) {
       console.error("Error editing task:", error.message);
+    } finally {
+      hideLoading(taskID);
     }
   }
 
@@ -81,6 +88,7 @@ async function handleDeleteCurrentTask(e) {
     const taskId = target.parentElement.dataset.id;
 
     try {
+      showLoading(taskId);
       await deleteCurrentTaskService(taskId);
       updateUIAfterDelete(taskId);
     } catch (error) {
@@ -98,6 +106,7 @@ async function handleCompleteCurrentTask(e) {
     const taskId = target.parentElement.dataset.id;
 
     try {
+      showLoading(taskId);
       await completeCurrentTaskService(taskId);
       updateUIAfterComplete(taskId);
     } catch (error) {
