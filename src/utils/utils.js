@@ -112,16 +112,30 @@ export function hideLoading(taskId) {
     .parentElement.classList.remove("loading");
 }
 
-export function showSpinner(contentList) {
+export function showCurrentSpinner(contentList) {
   contentList.style.display = "none";
   document
-    .querySelector(".content__spinner")
+    .querySelector(".content__spinner--current")
     .classList.add("spinner");
 }
 
-export function hideSpinner(contentList) {
+export function hideCurrentSpinner(contentList) {
   contentList.style.display = "block";
   document
-    .querySelector(".content__spinner")
+    .querySelector(".content__spinner--current")
+    .classList.remove("spinner");
+}
+
+export function showCompletedSpinner(contentList) {
+  contentList.style.display = "none";
+  document
+    .querySelector(".content__spinner--completed")
+    .classList.add("spinner");
+}
+
+export function hideCompletedSpinner(contentList) {
+  contentList.style.display = "block";
+  document
+    .querySelector(".content__spinner--completed")
     .classList.remove("spinner");
 }

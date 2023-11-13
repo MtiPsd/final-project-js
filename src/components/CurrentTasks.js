@@ -6,10 +6,10 @@ import {
   updateCurrentTaskService,
 } from "../services/tasksService.js";
 import {
+  hideCurrentSpinner,
   hideLoading,
-  hideSpinner,
+  showCurrentSpinner,
   showLoading,
-  showSpinner,
   updateUIAfterAdd,
   updateUIAfterComplete,
   updateUIAfterDelete,
@@ -30,13 +30,13 @@ const modalInput = document.getElementById("modal-input");
 
 export async function getCurrentTasks() {
   try {
-    showSpinner(todosContentList);
+    showCurrentSpinner(todosContentList);
     const tasks = await getCurrentTasksService();
     updateUIAfterGet(tasks, todosContentList);
   } catch (error) {
     console.error("Error getting tasks:", error.message);
   } finally {
-    hideSpinner(todosContentList);
+    hideCurrentSpinner(todosContentList);
   }
 }
 
@@ -48,7 +48,7 @@ async function handleAddCurrentTask(e) {
 
   if (title) {
     try {
-      showSpinner(todosContentList);
+      showCurrentSpinner(todosContentList);
       const newTask = { title, id };
       const createdTask = await createCurrentTaskService(newTask);
 
@@ -56,7 +56,7 @@ async function handleAddCurrentTask(e) {
     } catch (error) {
       console.error("Error adding task:", error.message);
     } finally {
-      hideSpinner(todosContentList);
+      hideCurrentSpinner(todosContentList);
     }
   }
 }
@@ -67,17 +67,17 @@ handleOpenModal(todosContentList);
 
 async function handleEditCurrentTask() {
   const title = modalInput.value.trim();
-  const taskID = saveChangesBtn.dataset.id;
-  if (title && taskID) {
+  const taskId = saveChangesBtn.dataset.id;
+  if (title && taskId) {
     try {
-      showLoading(taskID);
+      showLoading(taskId);
       const updatedTask = { title };
-      await updateCurrentTaskService(taskID, updatedTask);
-      updateUIAfterEdit(taskID, title);
+      await updateCurrentTaskService(taskId, updatedTask);
+      updateUIAfterEdit(taskId, title);
     } catch (error) {
       console.error("Error editing task:", error.message);
     } finally {
-      hideLoading(taskID);
+      hideLoading(taskId);
     }
   }
 

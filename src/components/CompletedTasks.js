@@ -4,6 +4,10 @@ import {
   undoCompletedTaskService,
 } from "../services/tasksService.js";
 import {
+  hideCompletedSpinner,
+  hideLoading,
+  showCompletedSpinner,
+  showLoading,
   updateUIAfterDelete,
   updateUIAfterGet,
   updateUIAfterUndo,
@@ -17,10 +21,13 @@ const completedContentList = document.getElementById(
 
 export async function getCompletedTasks() {
   try {
+    showCompletedSpinner(completedContentList);
     const tasks = await getCompletedTasksService();
     updateUIAfterGet(tasks, completedContentList, true);
   } catch (error) {
     console.error("Error getting completed tasks:", error.message);
+  } finally {
+    hideCompletedSpinner(completedContentList);
   }
 }
 
@@ -33,6 +40,7 @@ async function handlerUndoCompletedTask(e) {
     const taskId = target.parentElement.dataset.id;
 
     try {
+      showLoading(taskId);
       await undoCompletedTaskService(taskId);
       updateUIAfterUndo(taskId);
     } catch (error) {
@@ -50,6 +58,7 @@ async function handleDeleteCompletedTask(e) {
     const taskId = target.parentElement.dataset.id;
 
     try {
+      showLoading(taskId);
       await deleteCompletedTaskService(taskId);
       updateUIAfterDelete(taskId);
     } catch (error) {
