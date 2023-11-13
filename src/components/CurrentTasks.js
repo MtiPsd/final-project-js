@@ -6,6 +6,10 @@ import {
   updateCurrentTaskService,
 } from "../services/tasksService.js";
 import {
+  hideCurrentSpinner,
+  hideLoading,
+  showCurrentSpinner,
+  showLoading,
   updateUIAfterAdd,
   updateUIAfterComplete,
   updateUIAfterDelete,
@@ -26,10 +30,13 @@ const modalInput = document.getElementById("modal-input");
 
 export async function getCurrentTasks() {
   try {
+    showCurrentSpinner(todosContentList);
     const tasks = await getCurrentTasksService();
     updateUIAfterGet(tasks, todosContentList);
   } catch (error) {
     console.error("Error getting tasks:", error.message);
+  } finally {
+    hideCurrentSpinner(todosContentList);
   }
 }
 
@@ -41,12 +48,15 @@ async function handleAddCurrentTask(e) {
 
   if (title) {
     try {
+      showCurrentSpinner(todosContentList);
       const newTask = { title, id };
       const createdTask = await createCurrentTaskService(newTask);
 
       updateUIAfterAdd(createdTask, input, todosContentList);
     } catch (error) {
       console.error("Error adding task:", error.message);
+    } finally {
+      hideCurrentSpinner(todosContentList);
     }
   }
 }
@@ -57,15 +67,17 @@ handleOpenModal(todosContentList);
 
 async function handleEditCurrentTask() {
   const title = modalInput.value.trim();
-  const taskID = saveChangesBtn.dataset.id;
-  console.log(taskID);
-  if (title && taskID) {
+  const taskId = saveChangesBtn.dataset.id;
+  if (title && taskId) {
     try {
+      showLoading(taskId);
       const updatedTask = { title };
-      await updateCurrentTaskService(taskID, updatedTask);
-      updateUIAfterEdit(taskID, title);
+      await updateCurrentTaskService(taskId, updatedTask);
+      updateUIAfterEdit(taskId, title);
     } catch (error) {
       console.error("Error editing task:", error.message);
+    } finally {
+      hideLoading(taskId);
     }
   }
 
@@ -81,6 +93,7 @@ async function handleDeleteCurrentTask(e) {
     const taskId = target.parentElement.dataset.id;
 
     try {
+      showLoading(taskId);
       await deleteCurrentTaskService(taskId);
       updateUIAfterDelete(taskId);
     } catch (error) {
@@ -98,6 +111,7 @@ async function handleCompleteCurrentTask(e) {
     const taskId = target.parentElement.dataset.id;
 
     try {
+      showLoading(taskId);
       await completeCurrentTaskService(taskId);
       updateUIAfterComplete(taskId);
     } catch (error) {

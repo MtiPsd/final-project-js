@@ -97,49 +97,49 @@ export async function completeCurrentTaskService(taskId) {
 
 export async function getCompletedTasksService() {
   try {
-    const donesData = await tasksApi.get(API_COMPLETED_ENDPOINT);
-    return donesData;
+    const completedData = await tasksApi.get(API_COMPLETED_ENDPOINT);
+    return completedData;
   } catch (error) {
     console.error(
-      "Error getting dones:",
+      "Error getting completed:",
       error.response ? error.response.data : error.message,
     );
     throw error;
   }
 }
 
-export async function deleteCompletedTaskService(doneId) {
+export async function deleteCompletedTaskService(completedId) {
   try {
-    const deletedDoneResponse = await tasksApi.delete(
-      `${API_COMPLETED_ENDPOINT}/${doneId}`,
+    const deletedcompletedResponse = await tasksApi.delete(
+      `${API_COMPLETED_ENDPOINT}/${completedId}`,
     );
-    return deletedDoneResponse;
+    return deletedcompletedResponse;
   } catch (error) {
     console.error(
-      "Error deleting done task:",
+      "Error deleting completed task:",
       error.response ? error.response.data : error.message,
     );
     throw error;
   }
 }
 
-export async function undoCompletedTaskService(doneId) {
+export async function undoCompletedTaskService(completedId) {
   try {
-    const doneToUndo = await tasksApi.get(
-      `${API_COMPLETED_ENDPOINT}/${doneId}`,
+    const completedToUndo = await tasksApi.get(
+      `${API_COMPLETED_ENDPOINT}/${completedId}`,
     );
 
-    await tasksApi.delete(`${API_COMPLETED_ENDPOINT}/${doneId}`);
+    await tasksApi.delete(`${API_COMPLETED_ENDPOINT}/${completedId}`);
 
-    const undoneTodo = await tasksApi.post(
+    const uncompletedTodo = await tasksApi.post(
       API_CURRENTS_ENDPOINT,
-      doneToUndo,
+      completedToUndo,
     );
 
-    return undoneTodo;
+    return uncompletedTodo;
   } catch (error) {
     console.error(
-      "Error undoing done task:",
+      "Error undoing completed task:",
       error.response ? error.response.data : error.message,
     );
     throw error;

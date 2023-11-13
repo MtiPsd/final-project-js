@@ -1,38 +1,22 @@
 {
   "currents": [
     {
-      "title": "swim",
-      "id": "077840eb-53f9-4b2e-9b21-e91c2f05fd18"
+      "title": "people",
+      "id": "919c74b6-8528-4b62-8798-b2b024dc5671"
     },
     {
-      "title": "heu",
-      "id": "ae899655-5a84-4074-8ed2-533ba8105b8e"
-    },
-    {
-      "title": "swim",
-      "id": "bab8708f-771b-4f31-bb45-0b0ed5f6671e"
+      "title": "sasfeq",
+      "id": "86f19a72-3cb5-49b7-aef7-a30b46adada7"
     }
   ],
   "completed": [
     {
-      "title": "reza",
-      "id": "fc11011a-aaf2-4931-a385-3b8adbb48a0e"
+      "title": "add",
+      "id": "b209ed2c-46b8-4b9c-923f-246df448dcae"
     },
     {
-      "title": "OOP",
-      "id": "07cd3bd5-f4cc-4c18-acd9-d2c72e976154"
-    },
-    {
-      "title": "DRY",
-      "id": "bfda10b9-be1e-47cb-8346-84f39e20256b"
-    },
-    {
-      "title": "elget;",
-      "id": "75ce271f-cb6a-47bf-8ad0-edc8f5204019"
-    },
-    {
-      "title": "trnhnt",
-      "id": "45919d8a-19c9-4a11-acc7-1a58a5ff2a45"
+      "title": "wolf",
+      "id": "2d675144-38ee-49cb-9091-d3090cfd818f"
     }
   ]
 }

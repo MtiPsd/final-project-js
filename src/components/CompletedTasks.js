@@ -4,23 +4,29 @@ import {
   undoCompletedTaskService,
 } from "../services/tasksService.js";
 import {
+  hideCompletedSpinner,
+  showCompletedSpinner,
+  showLoading,
   updateUIAfterDelete,
   updateUIAfterGet,
   updateUIAfterUndo,
 } from "../utils/utils.js";
 
 const completedContentList = document.getElementById(
-  "content__list--dones",
+  "content__list--completed",
 );
 
 //////////////////// GET ////////////////////
 
 export async function getCompletedTasks() {
   try {
+    showCompletedSpinner(completedContentList);
     const tasks = await getCompletedTasksService();
     updateUIAfterGet(tasks, completedContentList, true);
   } catch (error) {
     console.error("Error getting completed tasks:", error.message);
+  } finally {
+    hideCompletedSpinner(completedContentList);
   }
 }
 
@@ -29,10 +35,11 @@ export async function getCompletedTasks() {
 async function handlerUndoCompletedTask(e) {
   const target = e.target;
 
-  if (target.matches("#done__icon--undo")) {
+  if (target.matches("#completed__icon--undo")) {
     const taskId = target.parentElement.dataset.id;
 
     try {
+      showLoading(taskId);
       await undoCompletedTaskService(taskId);
       updateUIAfterUndo(taskId);
     } catch (error) {
@@ -46,10 +53,11 @@ async function handlerUndoCompletedTask(e) {
 async function handleDeleteCompletedTask(e) {
   const target = e.target;
 
-  if (target.matches("#done__icon--delete")) {
+  if (target.matches("#completed__icon--delete")) {
     const taskId = target.parentElement.dataset.id;
 
     try {
+      showLoading(taskId);
       await deleteCompletedTaskService(taskId);
       updateUIAfterDelete(taskId);
     } catch (error) {

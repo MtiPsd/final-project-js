@@ -60,7 +60,7 @@ export function updateUIAfterAdd(createdTask, input, list) {
   list.insertAdjacentHTML(
     "beforeend",
     taskItem({
-      isDone: false,
+      iscompleted: false,
       title: createdTask.title.toString(),
       id: createdTask.id,
     }),
@@ -75,14 +75,14 @@ export function updateUIAfterEdit(taskId, newTitle) {
   taskTitleElem.textContent = newTitle;
 }
 
-export function updateUIAfterGet(tasks, list, isDone) {
+export function updateUIAfterGet(tasks, list, iscompleted) {
   list.innerHTML = "";
 
   tasks.forEach(task => {
     list.insertAdjacentHTML(
       "beforeend",
       taskItem({
-        isDone,
+        iscompleted,
         title: task.title.toString(),
         id: task.id,
       }),
@@ -98,4 +98,44 @@ export function updateUIAfterUndo(taskId) {
   if (completedTask) {
     completedTask.remove();
   }
+}
+
+export function showLoading(taskId) {
+  document
+    .querySelector(`[data-id="${taskId}"]`)
+    .parentElement.classList.add("loading");
+}
+
+export function hideLoading(taskId) {
+  document
+    .querySelector(`[data-id="${taskId}"]`)
+    .parentElement.classList.remove("loading");
+}
+
+export function showCurrentSpinner(contentList) {
+  contentList.style.display = "none";
+  document
+    .querySelector(".content__spinner--current")
+    .classList.add("spinner");
+}
+
+export function hideCurrentSpinner(contentList) {
+  contentList.style.display = "block";
+  document
+    .querySelector(".content__spinner--current")
+    .classList.remove("spinner");
+}
+
+export function showCompletedSpinner(contentList) {
+  contentList.style.display = "none";
+  document
+    .querySelector(".content__spinner--completed")
+    .classList.add("spinner");
+}
+
+export function hideCompletedSpinner(contentList) {
+  contentList.style.display = "block";
+  document
+    .querySelector(".content__spinner--completed")
+    .classList.remove("spinner");
 }
