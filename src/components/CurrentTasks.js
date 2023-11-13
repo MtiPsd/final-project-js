@@ -7,7 +7,9 @@ import {
 } from "../services/tasksService.js";
 import {
   hideLoading,
+  hideSpinner,
   showLoading,
+  showSpinner,
   updateUIAfterAdd,
   updateUIAfterComplete,
   updateUIAfterDelete,
@@ -28,12 +30,13 @@ const modalInput = document.getElementById("modal-input");
 
 export async function getCurrentTasks() {
   try {
-    // showLoading();
+    showSpinner(todosContentList);
     const tasks = await getCurrentTasksService();
     updateUIAfterGet(tasks, todosContentList);
   } catch (error) {
     console.error("Error getting tasks:", error.message);
   } finally {
+    hideSpinner(todosContentList);
   }
 }
 
@@ -45,13 +48,15 @@ async function handleAddCurrentTask(e) {
 
   if (title) {
     try {
-      // showLoading(id);
+      showSpinner(todosContentList);
       const newTask = { title, id };
       const createdTask = await createCurrentTaskService(newTask);
 
       updateUIAfterAdd(createdTask, input, todosContentList);
     } catch (error) {
       console.error("Error adding task:", error.message);
+    } finally {
+      hideSpinner(todosContentList);
     }
   }
 }

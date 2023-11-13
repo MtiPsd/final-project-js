@@ -111,3 +111,17 @@ export function hideLoading(taskId) {
     .querySelector(`[data-id="${taskId}"]`)
     .parentElement.classList.remove("loading");
 }
+
+export function showSpinner(contentList) {
+  contentList.style.display = "none";
+  document
+    .querySelector(".content__spinner")
+    .classList.add("spinner");
+}
+
+export function hideSpinner(contentList) {
+  contentList.style.display = "block";
+  document
+    .querySelector(".content__spinner")
+    .classList.remove("spinner");
+}
