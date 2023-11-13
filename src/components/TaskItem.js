@@ -1,11 +1,11 @@
-function taskItem({ isDone, title, id }) {
+function taskItem({ iscompleted, title, id }) {
   return `
     <li class="content__item" >
       <p>${title}</p>
     
       <div class="icons" data-id="${id}">
         ${
-          !isDone
+          !iscompleted
             ? `<div class="icon icon--check" id="icon--check" >
                 <box-icon name="check" id="box-icon"></box-icon>
                </div>
@@ -19,11 +19,11 @@ function taskItem({ isDone, title, id }) {
                </div>
                `
             : `
-               <div class="icon done__icon--undo" id="done__icon--undo">
+               <div class="icon completed__icon--undo" id="completed__icon--undo">
                 <box-icon name="undo" id="box-icon"></box-icon>
                </div>
               
-              <div class="icon done__icon--delete" id="done__icon--delete">
+              <div class="icon completed__icon--delete" id="completed__icon--delete">
                <box-icon name="trash" id="box-icon"></box-icon>
               </div>
               `

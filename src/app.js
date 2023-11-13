@@ -6,9 +6,11 @@ import { handleModal } from "./utils/utils.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const todosContent = document.getElementById("todos-content");
-  const donesContent = document.getElementById("dones-content");
+  const completedContent = document.getElementById(
+    "completed-content",
+  );
   const showCurrent = document.getElementById("current-toggle");
-  const showDones = document.getElementById("done-toggle");
+  const showcompleted = document.getElementById("completed-toggle");
 
   await getCurrentTasks();
 
@@ -17,16 +19,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   showCurrent.addEventListener("click", async () => {
     if (!isShowingTodos) {
       todosContent.style.display = "block";
-      donesContent.style.display = "none";
+      completedContent.style.display = "none";
       isShowingTodos = true;
       await getCurrentTasks();
     }
   });
 
-  showDones.addEventListener("click", async () => {
+  showcompleted.addEventListener("click", async () => {
     if (isShowingTodos) {
       todosContent.style.display = "none";
-      donesContent.style.display = "block";
+      completedContent.style.display = "block";
       isShowingTodos = false;
       await getCompletedTasks();
     }

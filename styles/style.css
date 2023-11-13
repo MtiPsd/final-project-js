@@ -304,11 +304,11 @@ a:visited {
   background-color: var(--color-icon-tertiary);
 }
 
-/* .done__icon--undo {
+/* .completed__icon--undo {
   background-color: var(--color-icon-secondary);
 } */
 
-.done__icon--delete {
+.completed__icon--delete {
   background-color: var(--color-icon-tertiary);
 }
 
@@ -354,7 +354,7 @@ a:visited {
   justify-content: start;
 }
 
-#dones-content {
+#completed-content {
   display: none;
 }
 

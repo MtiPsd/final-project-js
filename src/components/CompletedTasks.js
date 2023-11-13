@@ -5,7 +5,6 @@ import {
 } from "../services/tasksService.js";
 import {
   hideCompletedSpinner,
-  hideLoading,
   showCompletedSpinner,
   showLoading,
   updateUIAfterDelete,
@@ -14,7 +13,7 @@ import {
 } from "../utils/utils.js";
 
 const completedContentList = document.getElementById(
-  "content__list--dones",
+  "content__list--completed",
 );
 
 //////////////////// GET ////////////////////
@@ -36,7 +35,7 @@ export async function getCompletedTasks() {
 async function handlerUndoCompletedTask(e) {
   const target = e.target;
 
-  if (target.matches("#done__icon--undo")) {
+  if (target.matches("#completed__icon--undo")) {
     const taskId = target.parentElement.dataset.id;
 
     try {
@@ -54,7 +53,7 @@ async function handlerUndoCompletedTask(e) {
 async function handleDeleteCompletedTask(e) {
   const target = e.target;
 
-  if (target.matches("#done__icon--delete")) {
+  if (target.matches("#completed__icon--delete")) {
     const taskId = target.parentElement.dataset.id;
 
     try {
