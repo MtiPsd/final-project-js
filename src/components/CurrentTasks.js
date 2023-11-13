@@ -6,17 +6,23 @@ import {
   updateCurrentTaskService,
 } from "../services/tasksService.js";
 import {
-  hideCurrentSpinner,
-  hideLoading,
-  showCurrentSpinner,
-  showLoading,
   updateUIAfterAdd,
   updateUIAfterComplete,
   updateUIAfterDelete,
   updateUIAfterEdit,
   updateUIAfterGet,
+} from "../ui/CurrentTasksUI.js";
+import {
+  hideCurrentSpinner,
+  hideLoading,
+  showCurrentSpinner,
+  showLoading,
 } from "../utils/utils.js";
-import { closeModal, handleOpenModal } from "./Modal.js";
+import {
+  clearModalInput,
+  closeModal,
+  handleOpenModal,
+} from "./Modal.js";
 
 const todosContentList = document.getElementById(
   "content__list--todos",
@@ -78,6 +84,7 @@ async function handleEditCurrentTask() {
       console.error("Error editing task:", error.message);
     } finally {
       hideLoading(taskId);
+      clearModalInput(modalInput);
     }
   }
 
@@ -126,4 +133,3 @@ addTaskBtn.addEventListener("click", handleAddCurrentTask);
 saveChangesBtn.addEventListener("click", handleEditCurrentTask);
 todosContentList.addEventListener("click", handleDeleteCurrentTask);
 todosContentList.addEventListener("click", handleCompleteCurrentTask);
-// todosContentList.addEventListener("click", handleOpenModal);
