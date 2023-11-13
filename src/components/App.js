@@ -1,3 +1,7 @@
+import {
+  removeAllTasksCompleted,
+  removeNoTasksMessage,
+} from "../utils/utils.js";
 import { getCompletedTasks } from "./CompletedTasks.js";
 import { getCurrentTasks } from "./CurrentTasks.js";
 import { displayModal } from "./Modal.js";
@@ -17,6 +21,7 @@ export function runApp() {
     let isShowingTodos = true;
 
     showCurrent.addEventListener("click", async () => {
+      removeNoTasksMessage();
       if (!isShowingTodos) {
         todosContent.style.display = "block";
         completedContent.style.display = "none";
@@ -26,6 +31,7 @@ export function runApp() {
     });
 
     showCompleted.addEventListener("click", async () => {
+      removeAllTasksCompleted();
       if (isShowingTodos) {
         todosContent.style.display = "none";
         completedContent.style.display = "block";
