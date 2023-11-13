@@ -1,4 +1,9 @@
 {
-  "currents": [],
+  "currents": [
+    {
+      "title": "some people",
+      "id": "3dc60244-9da9-4c96-adf2-4ca45eafd76b"
+    }
+  ],
   "completed": []
 }

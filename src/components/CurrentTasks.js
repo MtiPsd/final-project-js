@@ -16,7 +16,11 @@ import {
   updateUIAfterEdit,
   updateUIAfterGet,
 } from "../utils/utils.js";
-import { closeModal, handleOpenModal } from "./Modal.js";
+import {
+  clearModalInput,
+  closeModal,
+  handleOpenModal,
+} from "./Modal.js";
 
 const todosContentList = document.getElementById(
   "content__list--todos",
@@ -78,6 +82,7 @@ async function handleEditCurrentTask() {
       console.error("Error editing task:", error.message);
     } finally {
       hideLoading(taskId);
+      clearModalInput();
     }
   }
 

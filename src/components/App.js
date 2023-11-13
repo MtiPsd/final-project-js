@@ -1,6 +1,6 @@
-import { handleModal } from "../utils/utils.js";
 import { getCompletedTasks } from "./CompletedTasks.js";
 import { getCurrentTasks } from "./CurrentTasks.js";
+import { displayModal } from "./Modal.js";
 
 export function runApp() {
   document.addEventListener("DOMContentLoaded", async () => {
@@ -35,6 +35,6 @@ export function runApp() {
     });
 
     // handles modal state
-    handleModal();
+    displayModal();
   });
 }
