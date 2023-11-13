@@ -15,8 +15,10 @@ import {
 import {
   hideCurrentSpinner,
   hideLoading,
+  removeNoTasksMessage,
   showCurrentSpinner,
   showLoading,
+  toggleNoTasksMessage,
 } from "../utils/utils.js";
 import {
   clearModalInput,
@@ -39,6 +41,7 @@ export async function getCurrentTasks() {
     showCurrentSpinner(todosContentList);
     const tasks = await getCurrentTasksService();
     updateUIAfterGet(tasks, todosContentList);
+    toggleNoTasksMessage(tasks);
   } catch (error) {
     console.error("Error getting tasks:", error.message);
   } finally {
@@ -51,13 +54,13 @@ export async function getCurrentTasks() {
 async function handleAddCurrentTask(e) {
   const title = e.target.value.trim();
   const id = crypto.randomUUID();
+  removeNoTasksMessage();
 
   if (title) {
     try {
       showCurrentSpinner(todosContentList);
       const newTask = { title, id };
       const createdTask = await createCurrentTaskService(newTask);
-
       updateUIAfterAdd(createdTask, input, todosContentList);
     } catch (error) {
       console.error("Error adding task:", error.message);
@@ -103,6 +106,8 @@ async function handleDeleteCurrentTask(e) {
       showLoading(taskId);
       await deleteCurrentTaskService(taskId);
       updateUIAfterDelete(taskId);
+      const tasks = await getCurrentTasksService();
+      toggleNoTasksMessage(tasks);
     } catch (error) {
       console.error("Error deleting task:", error.message);
     }
@@ -121,6 +126,8 @@ async function handleCompleteCurrentTask(e) {
       showLoading(taskId);
       await completeCurrentTaskService(taskId);
       updateUIAfterComplete(taskId);
+      const tasks = await getCurrentTasksService();
+      toggleNoTasksMessage(tasks);
     } catch (error) {
       console.error("Error completing task:", error.message);
     }

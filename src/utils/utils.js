@@ -53,3 +53,29 @@ export function hideCompletedSpinner(contentList) {
     .querySelector(".content__spinner--completed")
     .classList.remove("spinner");
 }
+
+export function toggleNoTasksMessage(tasks) {
+  const noTasksMessage = document.getElementById("no-tasks-message");
+  noTasksMessage.style.display =
+    tasks.length === 0 ? "block" : "none";
+}
+
+export function removeNoTasksMessage() {
+  const noTasksMessage = document.getElementById("no-tasks-message");
+  noTasksMessage.style.display = "none";
+}
+
+export function toggleAllTasksCompleted(tasks) {
+  const noTasksMessage = document.getElementById(
+    "all-tasks-completed-message",
+  );
+  noTasksMessage.style.display =
+    tasks.length === 0 ? "block" : "none";
+}
+
+export function removeAllTasksCompleted() {
+  const noTasksMessage = document.getElementById(
+    "all-tasks-completed-message",
+  );
+  noTasksMessage.style.display = "none";
+}

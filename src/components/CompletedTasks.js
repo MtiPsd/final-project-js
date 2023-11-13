@@ -12,6 +12,7 @@ import {
   hideCompletedSpinner,
   showCompletedSpinner,
   showLoading,
+  toggleAllTasksCompleted,
 } from "../utils/utils.js";
 
 const completedContentList = document.getElementById(
@@ -25,6 +26,7 @@ export async function getCompletedTasks() {
     showCompletedSpinner(completedContentList);
     const tasks = await getCompletedTasksService();
     updateUIAfterGet(tasks, completedContentList, true);
+    toggleAllTasksCompleted(tasks);
   } catch (error) {
     console.error("Error getting completed tasks:", error.message);
   } finally {
@@ -44,6 +46,8 @@ async function handlerUndoCompletedTask(e) {
       showLoading(taskId);
       await undoCompletedTaskService(taskId);
       updateUIAfterUndo(taskId);
+      const tasks = await getCompletedTasksService();
+      toggleAllTasksCompleted(tasks);
     } catch (error) {
       console.error("Error undo the task:", error.message);
     }
@@ -62,6 +66,8 @@ async function handleDeleteCompletedTask(e) {
       showLoading(taskId);
       await deleteCompletedTaskService(taskId);
       updateUIAfterDelete(taskId);
+      const tasks = await getCompletedTasksService();
+      toggleAllTasksCompleted(tasks);
     } catch (error) {
       console.error("Error undo the task:", error.message);
     }

@@ -522,3 +522,19 @@ a:visited {
     transform: rotate(360deg);
   }
 }
+
+#no-tasks-message {
+  display: none;
+  text-align: center;
+  padding: 2rem;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+#all-tasks-completed-message {
+  display: none;
+  text-align: center;
+  padding: 2rem;
+  font-size: 2rem;
+  font-weight: 800;
+}
