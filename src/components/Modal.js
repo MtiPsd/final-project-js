@@ -9,8 +9,8 @@ export function openModal() {
   modal.style.display = "block";
 }
 
-export function clearModalInput() {
-  modal.value = "";
+export function clearModalInput(modalInput) {
+  modalInput.value = "";
 }
 
 export function handleOpenModal(list) {

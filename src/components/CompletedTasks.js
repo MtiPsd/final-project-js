@@ -3,13 +3,15 @@ import {
   getCompletedTasksService,
   undoCompletedTaskService,
 } from "../services/tasksService.js";
+import { updateUIAfterUndo } from "../ui/CompletedTasksUI.js";
+import {
+  updateUIAfterDelete,
+  updateUIAfterGet,
+} from "../ui/CurrentTasksUI.js";
 import {
   hideCompletedSpinner,
   showCompletedSpinner,
   showLoading,
-  updateUIAfterDelete,
-  updateUIAfterGet,
-  updateUIAfterUndo,
 } from "../utils/utils.js";
 
 const completedContentList = document.getElementById(

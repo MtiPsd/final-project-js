@@ -6,15 +6,17 @@ import {
   updateCurrentTaskService,
 } from "../services/tasksService.js";
 import {
-  hideCurrentSpinner,
-  hideLoading,
-  showCurrentSpinner,
-  showLoading,
   updateUIAfterAdd,
   updateUIAfterComplete,
   updateUIAfterDelete,
   updateUIAfterEdit,
   updateUIAfterGet,
+} from "../ui/CurrentTasksUI.js";
+import {
+  hideCurrentSpinner,
+  hideLoading,
+  showCurrentSpinner,
+  showLoading,
 } from "../utils/utils.js";
 import {
   clearModalInput,
@@ -82,7 +84,7 @@ async function handleEditCurrentTask() {
       console.error("Error editing task:", error.message);
     } finally {
       hideLoading(taskId);
-      clearModalInput();
+      clearModalInput(modalInput);
     }
   }
 
@@ -131,4 +133,3 @@ addTaskBtn.addEventListener("click", handleAddCurrentTask);
 saveChangesBtn.addEventListener("click", handleEditCurrentTask);
 todosContentList.addEventListener("click", handleDeleteCurrentTask);
 todosContentList.addEventListener("click", handleCompleteCurrentTask);
-// todosContentList.addEventListener("click", handleOpenModal);
