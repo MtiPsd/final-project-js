@@ -1,11 +1,11 @@
-function taskItem({ iscompleted, title, id }) {
+function taskItem({ isCompleted, title, id }) {
   return `
     <li class="content__item" >
       <p>${title}</p>
     
       <div class="icons" data-id="${id}">
         ${
-          !iscompleted
+          !isCompleted
             ? `<div class="icon icon--check" id="icon--check" >
                 <box-icon name="check" id="box-icon"></box-icon>
                </div>

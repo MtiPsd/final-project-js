@@ -60,7 +60,7 @@ export function updateUIAfterAdd(createdTask, input, list) {
   list.insertAdjacentHTML(
     "beforeend",
     taskItem({
-      iscompleted: false,
+      isCompleted: false,
       title: createdTask.title.toString(),
       id: createdTask.id,
     }),
@@ -75,14 +75,14 @@ export function updateUIAfterEdit(taskId, newTitle) {
   taskTitleElem.textContent = newTitle;
 }
 
-export function updateUIAfterGet(tasks, list, iscompleted) {
+export function updateUIAfterGet(tasks, list, isCompleted) {
   list.innerHTML = "";
 
   tasks.forEach(task => {
     list.insertAdjacentHTML(
       "beforeend",
       taskItem({
-        iscompleted,
+        isCompleted,
         title: task.title.toString(),
         id: task.id,
       }),
