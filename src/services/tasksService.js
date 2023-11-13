@@ -110,10 +110,10 @@ export async function getCompletedTasksService() {
 
 export async function deleteCompletedTaskService(completedId) {
   try {
-    const deletedcompletedResponse = await tasksApi.delete(
+    const deletedCompletedResponse = await tasksApi.delete(
       `${API_COMPLETED_ENDPOINT}/${completedId}`,
     );
-    return deletedcompletedResponse;
+    return deletedCompletedResponse;
   } catch (error) {
     console.error(
       "Error deleting completed task:",

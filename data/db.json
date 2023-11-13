@@ -1,22 +1,26 @@
 {
   "currents": [
     {
-      "title": "people",
-      "id": "919c74b6-8528-4b62-8798-b2b024dc5671"
-    },
-    {
-      "title": "sasfeq",
-      "id": "86f19a72-3cb5-49b7-aef7-a30b46adada7"
-    }
-  ],
-  "completed": [
-    {
       "title": "add",
       "id": "b209ed2c-46b8-4b9c-923f-246df448dcae"
     },
     {
+      "title": "people",
+      "id": "919c74b6-8528-4b62-8798-b2b024dc5671"
+    },
+    {
+      "title": "dqwe",
+      "id": "7da51935-4135-460b-8d46-f87f2942a25b"
+    }
+  ],
+  "completed": [
+    {
       "title": "wolf",
       "id": "2d675144-38ee-49cb-9091-d3090cfd818f"
+    },
+    {
+      "title": "efwef",
+      "id": "22e383ae-839a-45a1-8d02-1bffefd77f06"
     }
   ]
 }

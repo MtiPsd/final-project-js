@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     "completed-content",
   );
   const showCurrent = document.getElementById("current-toggle");
-  const showcompleted = document.getElementById("completed-toggle");
+  const showCompleted = document.getElementById("completed-toggle");
 
   await getCurrentTasks();
 
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  showcompleted.addEventListener("click", async () => {
+  showCompleted.addEventListener("click", async () => {
     if (isShowingTodos) {
       todosContent.style.display = "none";
       completedContent.style.display = "block";
