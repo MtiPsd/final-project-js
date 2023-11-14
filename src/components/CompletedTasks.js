@@ -28,7 +28,7 @@ export async function getCompletedTasks() {
     updateUIAfterGet(tasks, completedContentList, true);
     toggleAllTasksCompleted(tasks);
   } catch (error) {
-    console.error("Error getting completed tasks:", error.message);
+    console.error("Error getting completed tasks:", error);
   } finally {
     hideCompletedSpinner(completedContentList);
   }
@@ -49,7 +49,7 @@ async function handlerUndoCompletedTask(e) {
       const tasks = await getCompletedTasksService();
       toggleAllTasksCompleted(tasks);
     } catch (error) {
-      console.error("Error undo the task:", error.message);
+      console.error("Error undo the task:", error);
     }
   }
 }
@@ -69,7 +69,7 @@ async function handleDeleteCompletedTask(e) {
       const tasks = await getCompletedTasksService();
       toggleAllTasksCompleted(tasks);
     } catch (error) {
-      console.error("Error undo the task:", error.message);
+      console.error("Error undo the task:", error);
     }
   }
 }

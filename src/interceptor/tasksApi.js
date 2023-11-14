@@ -1,3 +1,4 @@
+import { showErrorAlert } from "../components/Noty.js";
 import {
   API_BASE_URL,
   DEFAULT_TIMEOUT,
@@ -31,7 +32,6 @@ tasksApi.interceptors.request.use(
     return Promise.reject(err);
   },
 );
-
 tasksApi.interceptors.response.use(
   res => {
     return res.data;
@@ -40,7 +40,18 @@ tasksApi.interceptors.response.use(
     if (err.response) {
       if (err.response.status === 404) {
         // Handle 404 Not Found (wrong endpoint)
-        console.error("End Point Not found");
+        console.error(
+          "End Point Not found:",
+          err.response.config.url,
+        );
+
+        showErrorAlert(
+          "An error occurred while processing your request. Please try again later",
+        );
+      } else if (err.response.status === 500) {
+        // Handle 500
+        console.error("Internal Server Error:", err.response.data);
+        showErrorAlert("Something wrong with the server");
       } else {
         console.error(
           `Error ${err.response.status}:`,
@@ -49,6 +60,19 @@ tasksApi.interceptors.response.use(
       }
     } else if (err.request) {
       console.error("No response received");
+
+      if (
+        err.message === "Network Error" ||
+        err.code === "ECONNABORTED"
+      ) {
+        showErrorAlert(
+          "We’re sorry, but the server is currently unavailable. Please try again later",
+        );
+      } else {
+        showErrorAlert(
+          "We’re sorry, but there seems to be a problem with your internet connection. Please check your connection and try again later.",
+        );
+      }
     } else {
       console.error("Error:", err.message);
     }
