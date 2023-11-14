@@ -25,6 +25,7 @@ import {
   closeModal,
   handleOpenModal,
 } from "./Modal.js";
+import { showErrorAlert } from "./Noty.js";
 
 const todosContentList = document.getElementById(
   "content__list--todos",
@@ -43,7 +44,7 @@ export async function getCurrentTasks() {
     updateUIAfterGet(tasks, todosContentList);
     toggleNoTasksMessage(tasks);
   } catch (error) {
-    console.error("Error getting tasks:", error.message);
+    console.error("Error getting tasks:", error);
   } finally {
     hideCurrentSpinner(todosContentList);
   }
@@ -52,20 +53,24 @@ export async function getCurrentTasks() {
 //////////////////// ADD ////////////////////
 
 async function handleAddCurrentTask(e) {
-  const title = e.target.value.trim();
+  const title = input.value.trim();
   const id = crypto.randomUUID();
   removeNoTasksMessage();
 
-  if (title) {
-    try {
-      showCurrentSpinner(todosContentList);
-      const newTask = { title, id };
-      const createdTask = await createCurrentTaskService(newTask);
-      updateUIAfterAdd(createdTask, input, todosContentList);
-    } catch (error) {
-      console.error("Error adding task:", error.message);
-    } finally {
-      hideCurrentSpinner(todosContentList);
+  if (e.key === "Enter" || e.type === "click") {
+    if (title) {
+      try {
+        showCurrentSpinner(todosContentList);
+        const newTask = { title, id };
+        const createdTask = await createCurrentTaskService(newTask);
+        updateUIAfterAdd(createdTask, input, todosContentList);
+      } catch (error) {
+        console.error("Error adding task:", error);
+      } finally {
+        hideCurrentSpinner(todosContentList);
+      }
+    } else {
+      showErrorAlert("Input is empty");
     }
   }
 }
@@ -84,7 +89,7 @@ async function handleEditCurrentTask() {
       await updateCurrentTaskService(taskId, updatedTask);
       updateUIAfterEdit(taskId, title);
     } catch (error) {
-      console.error("Error editing task:", error.message);
+      console.error("Error updating task:", error);
     } finally {
       hideLoading(taskId);
       clearModalInput(modalInput);
@@ -109,7 +114,7 @@ async function handleDeleteCurrentTask(e) {
       const tasks = await getCurrentTasksService();
       toggleNoTasksMessage(tasks);
     } catch (error) {
-      console.error("Error deleting task:", error.message);
+      console.error("Error deleting task:", error);
     }
   }
 }
@@ -129,13 +134,13 @@ async function handleCompleteCurrentTask(e) {
       const tasks = await getCurrentTasksService();
       toggleNoTasksMessage(tasks);
     } catch (error) {
-      console.error("Error completing task:", error.message);
+      console.error("Error completing task:", error);
     }
   }
 }
 
 ////////////////// LISTENERS //////////////////
-input.addEventListener("change", handleAddCurrentTask);
+input.addEventListener("keydown", handleAddCurrentTask);
 addTaskBtn.addEventListener("click", handleAddCurrentTask);
 saveChangesBtn.addEventListener("click", handleEditCurrentTask);
 todosContentList.addEventListener("click", handleDeleteCurrentTask);

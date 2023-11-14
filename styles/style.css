@@ -538,3 +538,24 @@ a:visited {
   font-size: 2rem;
   font-weight: 800;
 }
+
+#error {
+  display: none;
+  text-align: center;
+  padding: 2rem;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.noty-container {
+  background-color: var(--color-icon-tertiary);
+  box-shadow: var(--modal-box-shadow);
+  border: var(--standard-border);
+  padding-left: 2rem;
+  padding-top: 0.5rem;
+}
+.noty-text {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  color: var(--color-text);
+}

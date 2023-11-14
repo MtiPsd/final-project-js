@@ -15,6 +15,7 @@ export async function getCurrentTasksService() {
       "Error getting tasks:",
       error.response ? error.response.data : error.message,
     );
+
     throw error;
   }
 }
