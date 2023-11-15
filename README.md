@@ -3,7 +3,7 @@
 
 A straightforward to-do application that allows you to add, edit, and undo tasks.
 
-![logo](https://github.com/MtiPsd/final-project-js/assets/95580073/e1097808-58d4-4f8f-8ea3-58ba1dcefbba)
+![logo_50](https://github.com/MtiPsd/final-project-js/assets/95580073/15aa86d7-8edf-4883-b3a6-08f383a2bda1)
 
 ## Installation
 
@@ -34,7 +34,11 @@ https://github.com/MtiPsd/final-project-js/assets/95580073/ad48dad6-b047-4e0b-82
 
 ## Tech Stack
 
-**Client:** Javascipt, html, css
+**Client:** 
+![js](https://github.com/MtiPsd/final-project-js/assets/95580073/5c9054cc-de53-47b6-bf2f-fa3857df43b8)![js](https://github.com/MtiPsd/final-project-js/assets/95580073/85d3c6be-0b62-4652-98fd-0b893d25a178)![css-3](https://github.com/MtiPsd/final-project-js/assets/95580073/a3291766-a730-4c47-ac14-258ee55897e5)
+
+
+
 
 **Server:** JSON-server
 
