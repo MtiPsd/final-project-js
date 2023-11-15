@@ -523,6 +523,10 @@ a:visited {
   }
 }
 
+/* ******************** *
+        Errors 
+* ********************* */
+
 #no-tasks-message {
   display: none;
   text-align: center;
@@ -546,6 +550,10 @@ a:visited {
   font-size: 2rem;
   font-weight: 800;
 }
+
+/* ******************** *
+    Noty [package] 
+* ********************* */
 
 .noty-container {
   background-color: var(--color-icon-tertiary);
