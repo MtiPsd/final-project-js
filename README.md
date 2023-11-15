@@ -35,7 +35,9 @@ https://github.com/MtiPsd/final-project-js/assets/95580073/ad48dad6-b047-4e0b-82
 ## Tech Stack
 
 **Client:** 
-![css-3 (2)](https://github.com/MtiPsd/final-project-js/assets/95580073/b24ff486-758d-4466-a1fd-cc52971b8be8)
+![css-3 (3)](https://github.com/MtiPsd/final-project-js/assets/95580073/01e84bd8-77de-4dc8-91a9-a9a30000b986)![js (1)](https://github.com/MtiPsd/final-project-js/assets/95580073/5dd29c35-a363-4c03-9a5e-d977a1bc1ec6)
+![html](https://github.com/MtiPsd/final-project-js/assets/95580073/b224146f-2979-40e2-8721-398de01e5640)
+
 
 
 
