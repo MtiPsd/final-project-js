@@ -3,8 +3,7 @@
 
 A straightforward to-do application that allows you to add, edit, and undo tasks.
 
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
-
+![logo](https://github.com/MtiPsd/final-project-js/assets/95580073/e1097808-58d4-4f8f-8ea3-58ba1dcefbba)
 
 ## Installation
 
