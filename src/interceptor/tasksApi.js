@@ -32,6 +32,7 @@ tasksApi.interceptors.request.use(
     return Promise.reject(err);
   },
 );
+
 tasksApi.interceptors.response.use(
   res => {
     return res.data;

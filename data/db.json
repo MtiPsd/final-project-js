@@ -1,30 +1,4 @@
 {
-  "currents": [
-    {
-      "title": "dqwed",
-      "id": "c7c3b063-beb9-4d84-8421-0241fe5a01fb"
-    },
-    {
-      "title": "fqewf",
-      "id": "366482eb-724c-4ada-a126-85e87d754366"
-    },
-    {
-      "title": "rog",
-      "id": "1a147d0d-c37c-424c-8261-e25d1c54f652"
-    }
-  ],
-  "completed": [
-    {
-      "title": "few",
-      "id": "90ef3a39-e84c-4984-aa3f-226c51a87c4e"
-    },
-    {
-      "title": "fwef",
-      "id": "e38f0680-12ac-434d-8a99-1ad2dde28df6"
-    },
-    {
-      "title": "defg",
-      "id": "ac0f8e7f-a8e1-4fba-9fb3-61e59ea967af"
-    }
-  ]
+  "currents": [],
+  "completed": []
 }
