@@ -18,7 +18,9 @@ Getting started :
     
 ## Demo
 
-Insert gif or link to demo
+
+https://github.com/MtiPsd/final-project-js/assets/95580073/ad48dad6-b047-4e0b-82ef-494abee5ed8a
+
 
 ## Color Reference
 
