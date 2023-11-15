@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "server": "json-server --watch data/db.json --port 5123"
+    "server": "json-server --watch data/db.json --port 5123 --delay 500"
   },
   "devDependencies": {
     "json-server": "^0.17.4"

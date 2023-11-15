@@ -22,6 +22,9 @@ body {
   overflow-x: hidden;
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   color: var(--color-text);
+
+  scrollbar-width: thin;
+  scrollbar-color: your_track_color your_thumb_color;
 }
 
 :root {
@@ -195,6 +198,24 @@ a:visited {
   height: 65%;
   font-size: var(--font-size-md);
   font-weight: 800;
+  padding: 0 1rem;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: your_track_color your_thumb_color;
+}
+
+/* For WebKit-based browsers (Chrome, Safari, etc.) */
+.content__list::-webkit-scrollbar {
+  width: 12px;
+  border-radius: 2rem;
+}
+
+.content__list::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.content__list::-webkit-scrollbar-thumb {
+  background-color: var(--color-modal-close);
 }
 
 .content__item {
