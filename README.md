@@ -15,8 +15,7 @@ Getting started :
   npm install
   npm run server
 ```
-> **Warning**
-> 
+## Warnings
 > ❌ Do NOT use "live server" , it may have conflicts with json-server
 
 > ✅ Use "Preview on Web Server" instead
