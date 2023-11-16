@@ -17,8 +17,9 @@ Getting started :
 ```
 > **Warning**
 > 
-> ❌ Do NOT use live server , it may have conflicts with json-server
-> ✅ use Preview on Web Server instead
+> ❌ Do NOT use "live server" , it may have conflicts with json-server
+
+> ✅ Use "Preview on Web Server" instead
 
 ## Demo
 
