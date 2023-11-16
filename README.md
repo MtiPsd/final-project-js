@@ -15,7 +15,11 @@ Getting started :
   npm install
   npm run server
 ```
-    
+> **Warning**
+> 
+> ❌ Do NOT use live server , it may have conflicts with json-server
+> ✅ use Preview on Web Server instead
+
 ## Demo
 
 
